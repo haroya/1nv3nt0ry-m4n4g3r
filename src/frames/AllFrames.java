@@ -1,6 +1,7 @@
 package frames;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,7 @@ public class AllFrames extends JFrame{
 	
 	public void logIn() {
 		logInPanel.removeAll();
+		welcome.setFont(new Font("Arial", Font.BOLD, 48));
 		logInPanel.add(welcome);
 		logInPanel.add(userText);
 		logInPanel.add(username);
@@ -58,6 +60,7 @@ public class AllFrames extends JFrame{
 			
 			private void menu() {
 				menuPanel.removeAll();
+				welcome.setFont(new Font("Arial", Font.BOLD, 48));
 				welcome.setText("Menu");
 				menuPanel.add(welcome);
 				menuPanel.add(orderOrRestockButton);
@@ -89,7 +92,10 @@ public class AllFrames extends JFrame{
 					
 					private void oRR() {
 						oRRPanel.removeAll();
-						oRRPanel.add(orderORRestock);
+						welcome.setFont(new Font("Arial", Font.BOLD, 48));
+						welcome.setText("Process Order or Restock");
+						
+						oRRPanel.add(welcome);
 						oRRPanel.add(orderButton);
 						oRRPanel.add(restockButton);
 						oRRPanel.add(continueORR);
@@ -110,22 +116,26 @@ public class AllFrames extends JFrame{
 ////////////////////////////////PROCESS ORDER/////////////////////////////////////////////////////////
 						orderButton.addActionListener(new ActionListener() {
 							JPanel orderPanel = new JPanel();
-							private JLabel processText = new JLabel("Process Order");
+							
 							private JButton continueOrder = new JButton("continue");
 							
 							private void order() {
 								orderPanel.removeAll();
-								orderPanel.add(processText);
-								orderPanel.add(instText);
+								welcome.setFont(new Font("Arial", Font.BOLD, 48));
+								welcome.setText("Process Order");
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
 								quantityText.setText("Quantity");
 								quantityText.setBackground(new Color(204,255,153));
+								
+								orderPanel.add(welcome);
+								orderPanel.add(instText);
 								orderPanel.add(productText);
 								orderPanel.add(productID);
 								orderPanel.add(quantityText);
 								orderPanel.add(quantity);
 								orderPanel.add(continueOrder);
+								
 								repaint();
 								revalidate();
 								
@@ -134,12 +144,14 @@ public class AllFrames extends JFrame{
 							public void actionPerformed(ActionEvent click) {
 								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
-								order();
 								c.setTitle("1nv3nt0ry-m4n4g3r: Process Order");
 								c.setSize(800,800);
 								
+								order();
+								
 								c.remove(oRRPanel);
 								c.add(orderPanel);
+								
 								repaint();
 								revalidate();
 							}
@@ -153,6 +165,7 @@ public class AllFrames extends JFrame{
 						
 						private void restock() {
 							restockPanel.removeAll();
+							welcome.setFont(new Font("Arial", Font.BOLD, 48));
 							welcome.setText("Process Restock");
 							restockPanel.add(welcome);
 							restockPanel.add(instText);
@@ -216,6 +229,7 @@ public class AllFrames extends JFrame{
 					
 					private void manageProducts() {
 						managePanel.removeAll();
+						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Manage Products");
 						managePanel.add(welcome);
 						managePanel.add(addButton);
@@ -244,6 +258,7 @@ public class AllFrames extends JFrame{
 							
 							private void addProduct() {
 								addPanel.removeAll();
+								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Add New Product");
 								inst.setText("Please enter the following");
 								inst.setBackground(new Color(102,204,102));
@@ -299,6 +314,7 @@ public class AllFrames extends JFrame{
 							
 							private void removeProduct() {
 								removePanel.removeAll();
+								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Remove Product");
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
@@ -336,6 +352,7 @@ public class AllFrames extends JFrame{
 							
 							private void adjustProductQuantity() {
 								adjustPanel.removeAll();
+								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Adjust Product Quantity");
 								inst.setText("Please enter the following");
 								inst.setBackground(new Color(102,204,102));
@@ -389,6 +406,7 @@ public class AllFrames extends JFrame{
 							
 							private void inventoryOptimization() {
 								ioPanel.removeAll();
+								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Inventory Optimization");
 								inst.setText("Please enter the following. Leave blank for no change");
 								inst.setBackground(new Color(102,204,102));
@@ -445,6 +463,7 @@ public class AllFrames extends JFrame{
 							
 							private void updateProductInfo() {
 								updatePanel.removeAll();
+								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Update Product Information");
 								inst.setText("Please enter the following. Leave blank for no change");
 								inst.setBackground(new Color(102,204,102));
@@ -520,6 +539,7 @@ public class AllFrames extends JFrame{
 					
 					private void marketingAnalysis() {
 						marketPanel.removeAll();
+						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Marketing Analysis");
 						productText.setText("Product ID");
 						productText.setBackground(new Color(204,255,153));
