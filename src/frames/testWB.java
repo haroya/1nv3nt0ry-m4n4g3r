@@ -52,7 +52,7 @@ public class testWB extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		txtProductId = new JTextField();
-		txtProductId.setBackground(new Color(204, 255, 153));
+		txtProductId.setBackground(new Color(102, 204, 102));
 		txtProductId.setText("Product ID");
 		GridBagConstraints gbc_txtProductId = new GridBagConstraints();
 		gbc_txtProductId.fill = GridBagConstraints.HORIZONTAL;

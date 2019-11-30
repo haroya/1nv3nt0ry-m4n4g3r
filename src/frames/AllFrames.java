@@ -10,7 +10,7 @@ import java.awt.Color;
 public class AllFrames extends JFrame{
 	public JPanel logInPanel = new JPanel();
 	public JLabel instText = new JLabel("Please enter the following");
-	public JLabel productText = new JLabel("Product ID");
+	public JTextField productText = new JTextField(15);
 	public JLabel quantityText = new JLabel("Quantity");
 	public JTextField productID = new JTextField(60);
 	public JTextField quantity = new JTextField(60);
@@ -108,6 +108,8 @@ public class AllFrames extends JFrame{
 								orderPanel.removeAll();
 								orderPanel.add(processText);
 								orderPanel.add(instText);
+								productText.setText("Product ID");
+								productText.setBackground(new Color(204,255,153));
 								orderPanel.add(productText);
 								orderPanel.add(productID);
 								orderPanel.add(quantityText);
@@ -142,6 +144,8 @@ public class AllFrames extends JFrame{
 							restockPanel.removeAll();
 							restockPanel.add(restockText);
 							restockPanel.add(instText);
+							productText.setText("Product ID");
+							productText.setBackground(new Color(204,255,153));
 							restockPanel.add(productText);
 							restockPanel.add(productID);
 							restockPanel.add(quantityText);
@@ -249,11 +253,64 @@ public class AllFrames extends JFrame{
 						});
 ////////////////////////////////INVENTORY OPTIMIZATION////////////////////////////////////////////////////////
 						iOButton.addActionListener(new ActionListener () {
-
-							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								// TODO Auto-generated method stub
+							JPanel ioPanel = new JPanel();
+							private JLabel ioWelcome = new JLabel("Inventory Optimization");
+							private JTextField inst = new JTextField(60);
+							private JTextField minInText = new JTextField(15);
+							private JTextField maxInText = new JTextField(15);
+							private JTextField min$Text = new JTextField(15);
+							private JTextField max$Text = new JTextField(15);
+							private JTextField minInventory = new JTextField(40);
+							private JTextField maxInventory = new JTextField(40);
+							private JTextField minPrice = new JTextField(40);
+							private JTextField maxPrice = new JTextField(40);
+							private JButton ioContinue = new JButton("continue");
+							
+							private void inventoryOptimization() {
+								ioPanel.removeAll();
+								inst.setText("Please enter the following. Leave blank for no change");
+								inst.setBackground(new Color(102,204,102));
+								productText.setText("Product ID");
+								productText.setBackground(new Color(204,255,153));
+								minInText.setText("Min inventory");
+								minInText.setBackground(new Color(204,255,153));
+								maxInText.setText("Max inventory");
+								maxInText.setBackground(new Color(204,255,153));
+								min$Text.setText("Min price");
+								min$Text.setBackground(new Color(204,255,153));
+								max$Text.setText("Max price");
+								max$Text.setBackground(new Color(204,255,153));
 								
+								ioPanel.add(ioWelcome);
+								ioPanel.add(inst);
+								ioPanel.add(productText);
+								ioPanel.add(productID);
+								ioPanel.add(minInText);
+								ioPanel.add(minInventory);
+								ioPanel.add(maxInText);
+								ioPanel.add(maxInventory);
+								ioPanel.add(min$Text);
+								ioPanel.add(minPrice);
+								ioPanel.add(max$Text);
+								ioPanel.add(maxPrice);
+								ioPanel.add(ioContinue);
+								
+								repaint();
+								revalidate();
+								
+							}
+							
+							@Override
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								inventoryOptimization();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+								c.setSize(800,800);
+								c.remove(managePanel);
+								c.add(ioPanel);
+								repaint();
+								revalidate();
 							}
 							
 						});
@@ -278,6 +335,7 @@ public class AllFrames extends JFrame{
 						});
 						c.remove(menuPanel);
 						c.add(managePanel);
+						////insert if statements to check for null/errors
 						repaint();
 						revalidate();						
 					}
@@ -311,20 +369,18 @@ public class AllFrames extends JFrame{
 						marketPanel.add(continueMA);
 						repaint();
 						revalidate();
-						
 					}
-					
 					
 					@Override
 					public void actionPerformed(ActionEvent click) {
 						Component b = (Component) click.getSource();
 						JFrame c = (JFrame) SwingUtilities.getRoot(b);
-						
 						marketingAnalysis();
 						c.setSize(800,800);
 						c.setTitle("1nv3nt0ry-m4n4g3r: Marketing Analysis");
 						c.remove(menuPanel);
 						c.add(marketPanel);
+						///insert if statements here to validate inputs
 						repaint();
 						revalidate();
 					}
