@@ -68,6 +68,8 @@ public class AllFrames extends JFrame{
 				c.setSize(800,800);
 				c.remove(logInPanel);
 				c.add(menuPanel);
+				repaint();
+				revalidate();
 /////////////////////////////PROCESS ORDER OR RESTOCK////////////////////////////////////////////////////
 				orderOrRestockButton.addActionListener(new ActionListener() {
 					JPanel oRRPanel = new JPanel();
