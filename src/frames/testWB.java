@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Color;
+import java.awt.Font;
 
 
 ////DONT TOUCH THIS!!!!!!!///////////////////////////////////////////
@@ -52,6 +53,7 @@ public class testWB extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		txtProductId = new JTextField();
+		txtProductId.setFont(new Font("Arial", Font.BOLD, 48));
 		txtProductId.setBackground(new Color(102, 204, 102));
 		txtProductId.setText("Product ID");
 		GridBagConstraints gbc_txtProductId = new GridBagConstraints();

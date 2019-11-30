@@ -329,11 +329,43 @@ public class AllFrames extends JFrame{
 						
 //////////////////////////////////ADJUST PRODUCT QUANTITY/////////////////////////////////////////////////////
 						adjustButton.addActionListener(new ActionListener() {
-						
+							JPanel adjustPanel = new JPanel();
+							private JButton continueAdjust = new JButton("continue");
+							
+							private void adjustProductQuantity() {
+								adjustPanel.removeAll();
+								welcome.setText("Adjust Product Quantity");
+								inst.setText("Please enter the following");
+								inst.setBackground(new Color(102,204,102));
+								productText.setText("Product ID");
+								productText.setBackground(new Color(204,255,153));
+								quantityText.setText("Quantity");
+								quantityText.setBackground(new Color(204,255,153));
+								
+								adjustPanel.add(welcome);
+								adjustPanel.add(inst);
+								adjustPanel.add(productText);
+								adjustPanel.add(productID);
+								adjustPanel.add(quantityText);
+								adjustPanel.add(quantity);
+								adjustPanel.add(continueAdjust);
+								
+								repaint();
+								revalidate();
+							}
 							
 							@Override
 							public void actionPerformed(ActionEvent click) {
-								
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								adjustProductQuantity();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Update Product Information");
+								c.setSize(800,800);
+								c.remove(managePanel);
+								c.add(adjustPanel);		
+								///if statements to validate input
+								repaint();
+								revalidate();
 							}
 							
 						});
@@ -393,7 +425,7 @@ public class AllFrames extends JFrame{
 								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								inventoryOptimization();
-								c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+								c.setTitle("1nv3nt0ry-m4n4g3r: Inventory Optimization");
 								c.setSize(800,800);
 								c.remove(managePanel);
 								c.add(ioPanel);
