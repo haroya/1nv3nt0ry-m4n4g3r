@@ -10,10 +10,17 @@ import java.awt.Color;
 public class AllFrames extends JFrame{
 	public JPanel logInPanel = new JPanel();
 	public JLabel instText = new JLabel("Please enter the following");
+	public JTextField nameText = new JTextField(15);
+	public JTextField productName = new JTextField(40);
+	public JTextField inst = new JTextField(60);
 	public JTextField productText = new JTextField(15);
 	public JTextField quantityText = new JTextField(15);
 	public JTextField productID = new JTextField(40);
 	public JTextField quantity = new JTextField(40);
+	public JTextField priceText = new JTextField(15);
+	public JTextField price = new JTextField(40);
+	public JTextField descText = new JTextField(15);
+	public JTextField description = new JTextField(40);
 	protected JLabel welcome = new JLabel("WELCOME");
 	protected JLabel userText = new JLabel("username: ");
 	protected JLabel passText = new JLabel("password: ");
@@ -215,6 +222,7 @@ public class AllFrames extends JFrame{
 						managePanel.add(iOButton);
 						managePanel.add(updateButton);
 						managePanel.add(continueManage);
+						
 						repaint();
 						revalidate();
 					}
@@ -230,13 +238,6 @@ public class AllFrames extends JFrame{
 /////////////////////////////////ADD NEW PRODUCT////////////////////////////////////////////////////////////
 						addButton.addActionListener(new ActionListener() {
 							JPanel addPanel = new JPanel();
-							private JTextField nameText = new JTextField(15);
-							private JTextField inst = new JTextField(60);
-							private JTextField productName = new JTextField(40);
-							private JTextField priceText = new JTextField(15);
-							private JTextField price = new JTextField(40);
-							private JTextField descText = new JTextField(15);
-							private JTextField description = new JTextField(40);
 							private JButton continueAdd = new JButton("continue");
 							
 							private void addProduct() {
@@ -244,7 +245,7 @@ public class AllFrames extends JFrame{
 								welcome.setText("Add New Product");
 								inst.setText("Please enter the following");
 								inst.setBackground(new Color(102,204,102));
-								nameText.setText("Min inventory");
+								nameText.setText("Product Name");
 								nameText.setBackground(new Color(204,255,153));
 								quantityText.setText("Quantity");
 								quantityText.setBackground(new Color(204,255,153));
@@ -325,20 +326,23 @@ public class AllFrames extends JFrame{
 							}
 							
 						});
+						
 //////////////////////////////////ADJUST PRODUCT QUANTITY/////////////////////////////////////////////////////
 						adjustButton.addActionListener(new ActionListener() {
-
+						
+							
 							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								// TODO Auto-generated method stub
+							public void actionPerformed(ActionEvent click) {
 								
 							}
 							
 						});
+						
+						
+						
 ////////////////////////////////INVENTORY OPTIMIZATION////////////////////////////////////////////////////////
 						iOButton.addActionListener(new ActionListener () {
 							JPanel ioPanel = new JPanel();
-							private JTextField inst = new JTextField(60);
 							private JTextField minInText = new JTextField(15);
 							private JTextField maxInText = new JTextField(15);
 							private JTextField min$Text = new JTextField(15);
@@ -399,12 +403,55 @@ public class AllFrames extends JFrame{
 							}
 							
 						});
+						
+///////////////////////////UPDATE PRODUCT INFO///////////////////////////////////////////
 						updateButton.addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								// TODO Auto-generated method stub
+							JPanel updatePanel = new JPanel();
+							private JButton continueUpdate = new JButton("continue");
+							
+							private void updateProductInfo() {
+								updatePanel.removeAll();
+								welcome.setText("Update Product Information");
+								inst.setText("Please enter the following. Leave blank for no change");
+								inst.setBackground(new Color(102,204,102));
+								productText.setText("Product ID");
+								productText.setBackground(new Color(204,255,153));
+								nameText.setText("Product Name");
+								nameText.setBackground(new Color(204,255,153));
+								priceText.setText("Price");
+								priceText.setBackground(new Color(204,255,153));
+								descText.setText("Description");
+								descText.setBackground(new Color(204,255,153));
 								
+								updatePanel.add(welcome);
+								updatePanel.add(inst);
+								updatePanel.add(productText);
+								updatePanel.add(productID);
+								updatePanel.add(nameText);
+								updatePanel.add(productName);
+								updatePanel.add(priceText);
+								updatePanel.add(price);
+								updatePanel.add(descText);
+								updatePanel.add(description);
+								updatePanel.add(continueUpdate);
+								
+								repaint();
+								revalidate();
+								
+							}
+							
+							@Override
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								updateProductInfo();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Update Product Information");
+								c.setSize(800,800);
+								c.remove(managePanel);
+								c.add(updatePanel);		
+								///if statements to validate input
+								repaint();
+								revalidate();
 							}
 							
 						});
@@ -430,7 +477,7 @@ public class AllFrames extends JFrame{
 ////////////////////////////MARKETING ANALYSIS//////////////////////////////////////////				
 				marketingButton.addActionListener(new ActionListener() {
 					JPanel marketPanel = new JPanel();
-					private JLabel maWelcome = new JLabel("Marketing Analysis");
+					
 					private JButton continueMA = new JButton("continue");
 					private JTextField startText = new JTextField(15);
 					private JTextField endText = new JTextField(15);
@@ -439,19 +486,24 @@ public class AllFrames extends JFrame{
 					
 					private void marketingAnalysis() {
 						marketPanel.removeAll();
-						marketPanel.add(maWelcome);
-						marketPanel.add(instText);
-						
+						welcome.setText("Marketing Analysis");
+						productText.setText("Product ID");
+						productText.setBackground(new Color(204,255,153));
 						startText.setBackground(new Color(204,255,153));
 						startText.setText("Start date");
 						endText.setBackground(new Color(204,255,153));
 						endText.setText("End date");
 						
+						marketPanel.add(welcome);
+						marketPanel.add(instText);
+						marketPanel.add(productText);
+						marketPanel.add(productID);
 						marketPanel.add(startText);
 						marketPanel.add(startDate);
 						marketPanel.add(endText);
 						marketPanel.add(endDate);
 						marketPanel.add(continueMA);
+						
 						repaint();
 						revalidate();
 					}
