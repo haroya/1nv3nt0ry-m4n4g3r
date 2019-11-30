@@ -23,12 +23,15 @@ public class AllFrames extends JFrame{
 //	protected ActionListener continueListen = new ContinueListener();
 	
 	public void logIn() {
+		logInPanel.removeAll();
 		logInPanel.add(welcome);
 		logInPanel.add(userText);
 		logInPanel.add(username);
 		logInPanel.add(passText);
 		logInPanel.add(password);
 		logInPanel.add(continueLogIn);
+		repaint();
+		revalidate();
 	}
 	
 	public AllFrames() {
