@@ -226,13 +226,65 @@ public class AllFrames extends JFrame{
 						manageProducts();
 						c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
 						c.setSize(800,800);
+						
 /////////////////////////////////ADD NEW PRODUCT////////////////////////////////////////////////////////////
 						addButton.addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								// TODO Auto-generated method stub
+							JPanel addPanel = new JPanel();
+							private JTextField nameText = new JTextField(15);
+							private JTextField inst = new JTextField(60);
+							private JTextField productName = new JTextField(40);
+							private JTextField priceText = new JTextField(15);
+							private JTextField price = new JTextField(40);
+							private JTextField descText = new JTextField(15);
+							private JTextField description = new JTextField(40);
+							private JButton continueAdd = new JButton("continue");
+							
+							private void addProduct() {
+								addPanel.removeAll();
+								welcome.setText("Add New Product");
+								inst.setText("Please enter the following");
+								inst.setBackground(new Color(102,204,102));
+								nameText.setText("Min inventory");
+								nameText.setBackground(new Color(204,255,153));
+								quantityText.setText("Quantity");
+								quantityText.setBackground(new Color(204,255,153));
+								priceText.setText("Price");
+								priceText.setBackground(new Color(204,255,153));
+								descText.setText("Description");
+								descText.setBackground(new Color(204,255,153));
+								productText.setText("Product ID");
+								productText.setBackground(new Color(204,255,153));
 								
+								addPanel.add(welcome);
+								addPanel.add(inst);
+								addPanel.add(nameText);
+								addPanel.add(productName);
+								addPanel.add(quantityText);
+								addPanel.add(quantity);
+								addPanel.add(priceText);
+								addPanel.add(price);
+								addPanel.add(descText);
+								addPanel.add(description);
+								addPanel.add(productText);
+								addPanel.add(productID);
+								addPanel.add(continueAdd);
+								
+								repaint();
+								revalidate();
+							}
+							
+							@Override
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								addProduct();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Add New Product");
+								c.setSize(800,800);		
+								c.remove(managePanel);
+								c.add(addPanel);
+								////insert if statements to validate input
+								repaint();
+								revalidate();								
 							}
 							
 						});
@@ -341,6 +393,7 @@ public class AllFrames extends JFrame{
 								c.setSize(800,800);
 								c.remove(managePanel);
 								c.add(ioPanel);
+								////if statements to validate input
 								repaint();
 								revalidate();
 							}
