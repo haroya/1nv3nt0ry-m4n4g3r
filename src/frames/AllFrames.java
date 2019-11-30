@@ -11,9 +11,9 @@ public class AllFrames extends JFrame{
 	public JPanel logInPanel = new JPanel();
 	public JLabel instText = new JLabel("Please enter the following");
 	public JTextField productText = new JTextField(15);
-	public JLabel quantityText = new JLabel("Quantity");
-	public JTextField productID = new JTextField(60);
-	public JTextField quantity = new JTextField(60);
+	public JTextField quantityText = new JTextField(15);
+	public JTextField productID = new JTextField(40);
+	public JTextField quantity = new JTextField(40);
 	protected JLabel welcome = new JLabel("WELCOME");
 	protected JLabel userText = new JLabel("username: ");
 	protected JLabel passText = new JLabel("password: ");
@@ -110,6 +110,8 @@ public class AllFrames extends JFrame{
 								orderPanel.add(instText);
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
+								quantityText.setText("Quantity");
+								quantityText.setBackground(new Color(204,255,153));
 								orderPanel.add(productText);
 								orderPanel.add(productID);
 								orderPanel.add(quantityText);
@@ -142,10 +144,13 @@ public class AllFrames extends JFrame{
 						
 						private void restock() {
 							restockPanel.removeAll();
-							restockPanel.add(restockText);
+							welcome.setText("Process Restock");
+							restockPanel.add(welcome);
 							restockPanel.add(instText);
 							productText.setText("Product ID");
 							productText.setBackground(new Color(204,255,153));
+							quantityText.setText("Quantity");
+							quantityText.setBackground(new Color(204,255,153));
 							restockPanel.add(productText);
 							restockPanel.add(productID);
 							restockPanel.add(quantityText);
@@ -193,7 +198,6 @@ public class AllFrames extends JFrame{
 ///////////////////////////MANAGE PRODUCTS///////////////////////////////////////
 				manageButton.addActionListener(new ActionListener() {
 					JPanel managePanel = new JPanel();
-					private JLabel manageText = new JLabel("Manage Products");
 					private JButton addButton = new JButton("Add new product");
 					private JButton removeButton = new JButton("Remove product");
 					private JButton adjustButton = new JButton("Adjust Product Quantity");
@@ -203,7 +207,8 @@ public class AllFrames extends JFrame{
 					
 					private void manageProducts() {
 						managePanel.removeAll();
-						managePanel.add(manageText);
+						welcome.setText("Manage Products");
+						managePanel.add(welcome);
 						managePanel.add(addButton);
 						managePanel.add(removeButton);
 						managePanel.add(adjustButton);
@@ -231,13 +236,40 @@ public class AllFrames extends JFrame{
 							}
 							
 						});
+						
 /////////////////////////////////REMOVE PRODUCT//////////////////////////////////////////////////////////////
 						removeButton.addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								// TODO Auto-generated method stub
+							JPanel removePanel = new JPanel();
+							private JButton removeContinue = new JButton("continue");
+							
+							private void removeProduct() {
+								removePanel.removeAll();
+								welcome.setText("Remove Product");
+								productText.setText("Product ID");
+								productText.setBackground(new Color(204,255,153));
 								
+								removePanel.add(welcome);
+								removePanel.add(instText);
+								removePanel.add(productText);
+								removePanel.add(productID);
+								removePanel.add(removeContinue);
+								
+								repaint();
+								revalidate();	
+							}
+							
+							@Override
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								removeProduct();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Remove Product");
+								c.setSize(800,800);		
+								c.remove(managePanel);
+								c.add(removePanel);
+								////insert if statements to validate input
+								repaint();
+								revalidate();
 							}
 							
 						});
@@ -254,7 +286,6 @@ public class AllFrames extends JFrame{
 ////////////////////////////////INVENTORY OPTIMIZATION////////////////////////////////////////////////////////
 						iOButton.addActionListener(new ActionListener () {
 							JPanel ioPanel = new JPanel();
-							private JLabel ioWelcome = new JLabel("Inventory Optimization");
 							private JTextField inst = new JTextField(60);
 							private JTextField minInText = new JTextField(15);
 							private JTextField maxInText = new JTextField(15);
@@ -268,6 +299,7 @@ public class AllFrames extends JFrame{
 							
 							private void inventoryOptimization() {
 								ioPanel.removeAll();
+								welcome.setText("Inventory Optimization");
 								inst.setText("Please enter the following. Leave blank for no change");
 								inst.setBackground(new Color(102,204,102));
 								productText.setText("Product ID");
@@ -281,7 +313,7 @@ public class AllFrames extends JFrame{
 								max$Text.setText("Max price");
 								max$Text.setBackground(new Color(204,255,153));
 								
-								ioPanel.add(ioWelcome);
+								ioPanel.add(welcome);
 								ioPanel.add(inst);
 								ioPanel.add(productText);
 								ioPanel.add(productID);
