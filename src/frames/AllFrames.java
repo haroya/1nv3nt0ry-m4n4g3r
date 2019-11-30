@@ -47,16 +47,19 @@ public class AllFrames extends JFrame{
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		logIn();
+/////////////////////////////////////MAIN MENU///////////////////////////////////////////////////////		
 		continueLogIn.addActionListener(new ActionListener() {
 			JPanel menuPanel=new JPanel();
-			private JLabel menu = new JLabel("MENU");
+			
 			private JButton orderOrRestockButton = new JButton("Process Order or Restock");
 			private JButton manageButton = new JButton("Manage Products");
 			private JButton marketingButton = new JButton("Marketing Analysis");
 			private JButton continueMenu = new JButton("continue");
 			
 			private void menu() {
-				menuPanel.add(menu);
+				menuPanel.removeAll();
+				welcome.setText("Menu");
+				menuPanel.add(welcome);
 				menuPanel.add(orderOrRestockButton);
 				menuPanel.add(manageButton);
 				menuPanel.add(marketingButton);
@@ -64,7 +67,6 @@ public class AllFrames extends JFrame{
 				repaint();
 				revalidate();
 			}
-			
 			
 			@Override
 			public void actionPerformed(ActionEvent click) {
@@ -103,7 +105,7 @@ public class AllFrames extends JFrame{
 
 						oRR();
 						
-						c.setTitle("1nv3nt0ry-m4n4g3r: Order or Restock");
+						c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
 						c.setSize(800,800);
 ////////////////////////////////PROCESS ORDER/////////////////////////////////////////////////////////
 						orderButton.addActionListener(new ActionListener() {
@@ -359,7 +361,7 @@ public class AllFrames extends JFrame{
 								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								adjustProductQuantity();
-								c.setTitle("1nv3nt0ry-m4n4g3r: Update Product Information");
+								c.setTitle("1nv3nt0ry-m4n4g3r: Adjust Product Quantity");
 								c.setSize(800,800);
 								c.remove(managePanel);
 								c.add(adjustPanel);		
