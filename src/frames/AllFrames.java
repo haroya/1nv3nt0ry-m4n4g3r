@@ -5,11 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+import java.awt.Color;
 
 public class AllFrames extends JFrame{
 	public JPanel logInPanel = new JPanel();
-	public JLabel instText = new JLabel("Please enter the following: ");
+	public JLabel instText = new JLabel("Please enter the following");
 	public JLabel productText = new JLabel("Product ID");
 	public JLabel quantityText = new JLabel("Quantity");
 	public JTextField productID = new JTextField(60);
@@ -96,7 +96,6 @@ public class AllFrames extends JFrame{
 
 						oRR();
 						
-						
 						c.setTitle("1nv3nt0ry-m4n4g3r: Order or Restock");
 						c.setSize(800,800);
 ////////////////////////////////PROCESS ORDER/////////////////////////////////////////////////////////
@@ -177,6 +176,8 @@ public class AllFrames extends JFrame{
 						}
 						
 					});
+					
+					
 					c.remove(menuPanel);
 					c.add(oRRPanel);
 					repaint();
@@ -285,11 +286,48 @@ public class AllFrames extends JFrame{
 				
 ////////////////////////////MARKETING ANALYSIS//////////////////////////////////////////				
 				marketingButton.addActionListener(new ActionListener() {
-
+					JPanel marketPanel = new JPanel();
+					private JLabel maWelcome = new JLabel("Marketing Analysis");
+					private JButton continueMA = new JButton("continue");
+					private JTextField startText = new JTextField(20);
+					private JTextField endText = new JTextField(20);
+					private JTextField startDate = new JTextField(60);
+					private JTextField endDate = new JTextField(60);
+					
+					
+					
+					private void marketingAnalysis() {
+						marketPanel.removeAll();
+						marketPanel.add(maWelcome);
+						marketPanel.add(instText);
+						
+						startText.setBackground(new Color(204,255,153));
+						startText.setText("Start date");
+						endText.setBackground(new Color(204,255,153));
+						endText.setText("End date");
+						
+						marketPanel.add(startText);
+						marketPanel.add(startDate);
+						marketPanel.add(endText);
+						marketPanel.add(endDate);
+						marketPanel.add(continueMA);
+						repaint();
+						revalidate();
+						
+					}
+					
+					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						// TODO Auto-generated method stub
-						
+						Component b = (Component) click.getSource();
+						JFrame c = (JFrame) SwingUtilities.getRoot(b);
+						c.setSize(800,800);
+						c.setTitle("1nv3nt0ry-m4n4g3r: Marketing Analysis");
+						marketingAnalysis();
+						c.remove(menuPanel);
+						c.add(marketPanel);
+						repaint();
+						revalidate();
 					}
 					
 				});
