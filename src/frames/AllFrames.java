@@ -289,12 +289,10 @@ public class AllFrames extends JFrame{
 					JPanel marketPanel = new JPanel();
 					private JLabel maWelcome = new JLabel("Marketing Analysis");
 					private JButton continueMA = new JButton("continue");
-					private JTextField startText = new JTextField(20);
-					private JTextField endText = new JTextField(20);
-					private JTextField startDate = new JTextField(60);
-					private JTextField endDate = new JTextField(60);
-					
-					
+					private JTextField startText = new JTextField(15);
+					private JTextField endText = new JTextField(15);
+					private JTextField startDate = new JTextField(50);
+					private JTextField endDate = new JTextField(50);
 					
 					private void marketingAnalysis() {
 						marketPanel.removeAll();
@@ -318,12 +316,13 @@ public class AllFrames extends JFrame{
 					
 					
 					@Override
-					public void actionPerformed(ActionEvent arg0) {
+					public void actionPerformed(ActionEvent click) {
 						Component b = (Component) click.getSource();
 						JFrame c = (JFrame) SwingUtilities.getRoot(b);
+						
+						marketingAnalysis();
 						c.setSize(800,800);
 						c.setTitle("1nv3nt0ry-m4n4g3r: Marketing Analysis");
-						marketingAnalysis();
 						c.remove(menuPanel);
 						c.add(marketPanel);
 						repaint();
