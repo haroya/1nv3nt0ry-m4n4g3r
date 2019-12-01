@@ -152,6 +152,7 @@ public class AllFrames extends JFrame{
 				
 				repaint();
 				revalidate();
+				
 			
 				
 /////////////////////////////PROCESS ORDER OR RESTOCK////////////////////////////////////////////////////
