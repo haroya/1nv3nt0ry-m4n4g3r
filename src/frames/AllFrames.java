@@ -33,7 +33,6 @@ public class AllFrames extends JFrame{
 	protected JTextField password = new JTextField(60);
 	protected JButton continueLogIn = new JButton("continue");
 	protected JButton backButton = new JButton("BACK");
-//	protected ActionListener continueListen = new ContinueListener();
 	
 	public void logIn() {
 		logInPanel.removeAll();
@@ -76,9 +75,12 @@ public class AllFrames extends JFrame{
 		this.setTitle("1nv3nt0ry-m4n4g3r: Log In Page");
 		this.setSize(800,800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 		logIn();
+		
+		
+		
+		
+		
 /////////////////////////////////////MAIN MENU///////////////////////////////////////////////////////		
 		continueLogIn.addActionListener(new ActionListener() {
 			JPanel menuPanel=new JPanel();
@@ -133,13 +135,17 @@ public class AllFrames extends JFrame{
 				repaint();
 				revalidate();
 				
+//////////////////////////////BACK TO LOG IN PAGE//////////////////////////////////////////////////////////	
 				backButton.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent click) {
-						
+						Component b = (Component) click.getSource();
+						JFrame c = (JFrame) SwingUtilities.getRoot(b);
+						c.setVisible(false);
+						AllFrames log = new AllFrames();
+						log.setVisible(true);
 					}
-					
 				});
 				
 /////////////////////////////PROCESS ORDER OR RESTOCK////////////////////////////////////////////////////
@@ -152,12 +158,25 @@ public class AllFrames extends JFrame{
 					
 					private void oRR() {
 						oRRPanel.removeAll();
+						
+						oRRPanel.setBackground(new Color(255,255,204));
+						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Process Order or Restock");
 						
 						oRRPanel.add(welcome);
 						oRRPanel.add(orderButton);
 						oRRPanel.add(restockButton);
+						oRRPanel.add(backButton);
+						
+						backButton.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent arg0) {
+								
+							}
+							
+						});
 						
 						repaint();
 						revalidate();
@@ -173,6 +192,12 @@ public class AllFrames extends JFrame{
 						
 						c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
 						c.setSize(800,800);
+						c.remove(menuPanel);
+						c.add(oRRPanel);
+						
+						repaint();
+						revalidate();
+						
 ////////////////////////////////PROCESS ORDER/////////////////////////////////////////////////////////
 						orderButton.addActionListener(new ActionListener() {
 							JPanel orderPanel = new JPanel();
@@ -181,6 +206,8 @@ public class AllFrames extends JFrame{
 							
 							private void order() {
 								orderPanel.removeAll();
+								orderPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Process Order");
 								productText.setText("Product ID");
@@ -217,6 +244,7 @@ public class AllFrames extends JFrame{
 							}
 							
 						});
+						
 ////////////////////////PROCESS RESTOCK///////////////////////////////////////////
 					restockButton.addActionListener(new ActionListener() {
 						JPanel restockPanel = new JPanel();
@@ -225,6 +253,8 @@ public class AllFrames extends JFrame{
 						
 						private void restock() {
 							restockPanel.removeAll();
+							restockPanel.setBackground(new Color(255,255,204));
+							
 							welcome.setFont(new Font("Arial", Font.BOLD, 48));
 							welcome.setText("Process Restock");
 							restockPanel.add(welcome);
@@ -267,13 +297,6 @@ public class AllFrames extends JFrame{
 						}
 						
 					});
-					
-					
-					c.remove(menuPanel);
-					c.add(oRRPanel);
-					
-					repaint();
-					revalidate();
 						
 					}
 					
@@ -290,6 +313,8 @@ public class AllFrames extends JFrame{
 					
 					private void manageProducts() {
 						managePanel.removeAll();
+						managePanel.setBackground(new Color(255,255,204));
+						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Manage Products");
 						managePanel.add(welcome);
@@ -319,6 +344,8 @@ public class AllFrames extends JFrame{
 							
 							private void addProduct() {
 								addPanel.removeAll();
+								addPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Add New Product");
 								inst.setText("Please enter the following");
@@ -375,6 +402,8 @@ public class AllFrames extends JFrame{
 							
 							private void removeProduct() {
 								removePanel.removeAll();
+								removePanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Remove Product");
 								productText.setText("Product ID");
@@ -413,6 +442,8 @@ public class AllFrames extends JFrame{
 							
 							private void adjustProductQuantity() {
 								adjustPanel.removeAll();
+								adjustPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Adjust Product Quantity");
 								inst.setText("Please enter the following");
@@ -467,6 +498,8 @@ public class AllFrames extends JFrame{
 							
 							private void inventoryOptimization() {
 								ioPanel.removeAll();
+								ioPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Inventory Optimization");
 								inst.setText("Please enter the following. Leave blank for no change");
@@ -523,6 +556,8 @@ public class AllFrames extends JFrame{
 							
 							private void updateProductInfo() {
 								updatePanel.removeAll();
+								updatePanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Update Product Information");
 								inst.setText("Please enter the following. Leave blank for no change");
@@ -590,6 +625,8 @@ public class AllFrames extends JFrame{
 					
 					private void marketingAnalysis() {
 						marketPanel.removeAll();
+						marketPanel.setBackground(new Color(255,255,204));
+						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Marketing Analysis");
 						productText.setText("Product ID");
