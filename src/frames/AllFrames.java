@@ -203,15 +203,24 @@ public class AllFrames extends JFrame{
 								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
 								orlayout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, orderPanel);
 								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, instText,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
-								orlayout.putConstraint(SpringLayout.NORTH, instText, 140, SpringLayout.NORTH, orderPanel);
-								
+								orlayout.putConstraint(SpringLayout.NORTH, instText, 150, SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.WEST, productText,80,SpringLayout.WEST, orderPanel);
+								orlayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.WEST, productID,80,SpringLayout.EAST, productText);
+								orlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.WEST, quantityText,80,SpringLayout.WEST, orderPanel);
+								orlayout.putConstraint(SpringLayout.NORTH, quantityText, 240,SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.WEST, quantity,80,SpringLayout.EAST, quantityText);
+								orlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueOrder,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
+								orlayout.putConstraint(SpringLayout.NORTH, continueOrder, 280, SpringLayout.NORTH, orderPanel);
 								orderPanel.add(welcome);
 								orderPanel.add(instText);
-								//orderPanel.add(productText);
-								//orderPanel.add(productID);
-								//orderPanel.add(quantityText);
-								//orderPanel.add(quantity);
-								//orderPanel.add(continueOrder);
+								orderPanel.add(productText);
+								orderPanel.add(productID);
+								orderPanel.add(quantityText);
+								orderPanel.add(quantity);
+								orderPanel.add(continueOrder);
 								
 								repaint();
 								revalidate();
