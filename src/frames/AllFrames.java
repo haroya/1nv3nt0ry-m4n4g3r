@@ -102,6 +102,24 @@ public class AllFrames extends JFrame{
 				menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 				welcome.setFont(new Font("Arial", Font.BOLD, 48));
 				welcome.setText("Menu");
+				backButton.setText("Log Out");
+				backButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Component b = (Component) e.getSource();
+						JFrame c = (JFrame) SwingUtilities.getRoot(b);
+						logIn();
+						c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+						c.setSize(800,800);
+						c.remove(menuPanel);
+						c.add(logInPanel);
+						
+						repaint();
+						revalidate();
+						
+					}
+				});
 				
 				
 				menuPanel.add(Box.createVerticalGlue());
@@ -168,6 +186,24 @@ public class AllFrames extends JFrame{
 						
 						repaint();
 						revalidate();
+						
+						backButton.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								
+								Component b = (Component) e.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								menu();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+								c.setSize(800,800);
+								c.remove(oRRPanel);
+								c.add(menuPanel);
+								
+								repaint();
+								revalidate();
+													
+							}
+						});
 						
 					}
 					
