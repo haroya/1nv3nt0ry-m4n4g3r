@@ -1,10 +1,14 @@
 package frames;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Color;
 
@@ -28,6 +32,7 @@ public class AllFrames extends JFrame{
 	protected JTextField username = new JTextField(60);
 	protected JTextField password = new JTextField(60);
 	protected JButton continueLogIn = new JButton("continue");
+	protected JButton backButton = new JButton("BACK");
 //	protected ActionListener continueListen = new ContinueListener();
 	
 	public void logIn() {
@@ -43,16 +48,18 @@ public class AllFrames extends JFrame{
 		revalidate();
 	}
 	
+	
+	
 	public AllFrames() {
+		
 		this.setTitle("1nv3nt0ry-m4n4g3r: Log In Page");
 		this.setSize(800,800);
-		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		logIn();
 /////////////////////////////////////MAIN MENU///////////////////////////////////////////////////////		
 		continueLogIn.addActionListener(new ActionListener() {
 			JPanel menuPanel=new JPanel();
-			
 			private JButton orderOrRestockButton = new JButton("Process Order or Restock");
 			private JButton manageButton = new JButton("Manage Products");
 			private JButton marketingButton = new JButton("Marketing Analysis");
@@ -60,13 +67,31 @@ public class AllFrames extends JFrame{
 			
 			private void menu() {
 				menuPanel.removeAll();
+				
+				backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+				welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+				orderOrRestockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+				manageButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+				marketingButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+				
+				
+				menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 				welcome.setFont(new Font("Arial", Font.BOLD, 48));
 				welcome.setText("Menu");
+				
+				
+				menuPanel.add(Box.createVerticalGlue());
 				menuPanel.add(welcome);
+				menuPanel.add(Box.createRigidArea(new Dimension(0,10)));
 				menuPanel.add(orderOrRestockButton);
+				menuPanel.add(Box.createRigidArea(new Dimension(0,10)));
 				menuPanel.add(manageButton);
+				menuPanel.add(Box.createRigidArea(new Dimension(0,10)));
 				menuPanel.add(marketingButton);
-				menuPanel.add(continueMenu);
+				menuPanel.add(Box.createRigidArea(new Dimension(0,10)));
+				menuPanel.add(backButton);
+				menuPanel.add(Box.createVerticalGlue());
+				
 				repaint();
 				revalidate();
 			}
@@ -98,7 +123,7 @@ public class AllFrames extends JFrame{
 						oRRPanel.add(welcome);
 						oRRPanel.add(orderButton);
 						oRRPanel.add(restockButton);
-						oRRPanel.add(continueORR);
+						
 						repaint();
 						revalidate();
 						
@@ -211,6 +236,7 @@ public class AllFrames extends JFrame{
 					
 					c.remove(menuPanel);
 					c.add(oRRPanel);
+					
 					repaint();
 					revalidate();
 						
@@ -437,7 +463,6 @@ public class AllFrames extends JFrame{
 								
 								repaint();
 								revalidate();
-								
 							}
 							
 							@Override
@@ -508,16 +533,7 @@ public class AllFrames extends JFrame{
 							}
 							
 						});
-//////////////////////////////////CONTINUE MANAGE//////////////////////////////////////////////////////////////
-						continueManage.addActionListener(new ActionListener() {
 
-							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								// TODO Auto-generated method stub
-								
-							}
-							
-						});
 						c.remove(menuPanel);
 						c.add(managePanel);
 						////insert if statements to check for null/errors
@@ -571,7 +587,7 @@ public class AllFrames extends JFrame{
 						c.setTitle("1nv3nt0ry-m4n4g3r: Marketing Analysis");
 						c.remove(menuPanel);
 						c.add(marketPanel);
-						///insert if statements here to validate inputs
+						///insert if statements
 						repaint();
 						revalidate();
 					}
