@@ -37,7 +37,28 @@ public class AllFrames extends JFrame{
 	
 	public void logIn() {
 		logInPanel.removeAll();
+		logInPanel.setBackground(new Color(255,255,204));
+		
 		welcome.setFont(new Font("Arial", Font.BOLD, 48));
+		
+		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		SpringLayout layout = new SpringLayout();
+		logInPanel.setLayout(layout);
+		
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,logInPanel);
+		layout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, logInPanel);
+		layout.putConstraint(SpringLayout.WEST, userText,60,SpringLayout.WEST, logInPanel);
+		layout.putConstraint(SpringLayout.NORTH, userText, 200,SpringLayout.NORTH, logInPanel);
+		layout.putConstraint(SpringLayout.WEST, username,60,SpringLayout.EAST, userText);
+		layout.putConstraint(SpringLayout.NORTH, username,200,SpringLayout.NORTH, logInPanel);		
+		layout.putConstraint(SpringLayout.WEST, passText,60,SpringLayout.WEST, logInPanel);
+		layout.putConstraint(SpringLayout.NORTH, passText, 300,SpringLayout.NORTH, logInPanel);
+		layout.putConstraint(SpringLayout.WEST, password,60,SpringLayout.EAST, passText);
+		layout.putConstraint(SpringLayout.NORTH, password,300,SpringLayout.NORTH, logInPanel);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueLogIn,0, SpringLayout.HORIZONTAL_CENTER,logInPanel);
+		layout.putConstraint(SpringLayout.NORTH, continueLogIn, 380, SpringLayout.NORTH, logInPanel);
+		
 		logInPanel.add(welcome);
 		logInPanel.add(userText);
 		logInPanel.add(username);
@@ -56,6 +77,7 @@ public class AllFrames extends JFrame{
 		this.setSize(800,800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
 		logIn();
 /////////////////////////////////////MAIN MENU///////////////////////////////////////////////////////		
 		continueLogIn.addActionListener(new ActionListener() {
@@ -67,6 +89,8 @@ public class AllFrames extends JFrame{
 			
 			private void menu() {
 				menuPanel.removeAll();
+				
+				menuPanel.setBackground(new Color(255,255,204));
 				
 				backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 				welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -105,8 +129,19 @@ public class AllFrames extends JFrame{
 				c.setSize(800,800);
 				c.remove(logInPanel);
 				c.add(menuPanel);
+				
 				repaint();
 				revalidate();
+				
+				backButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent click) {
+						
+					}
+					
+				});
+				
 /////////////////////////////PROCESS ORDER OR RESTOCK////////////////////////////////////////////////////
 				orderOrRestockButton.addActionListener(new ActionListener() {
 					JPanel oRRPanel = new JPanel();

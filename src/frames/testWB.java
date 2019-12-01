@@ -54,7 +54,7 @@ public class testWB extends JFrame {
 		
 		txtProductId = new JTextField();
 		txtProductId.setFont(new Font("Arial", Font.BOLD, 48));
-		txtProductId.setBackground(new Color(102, 204, 102));
+		txtProductId.setBackground(new Color(255, 255, 204));
 		txtProductId.setText("Product ID");
 		GridBagConstraints gbc_txtProductId = new GridBagConstraints();
 		gbc_txtProductId.fill = GridBagConstraints.HORIZONTAL;
