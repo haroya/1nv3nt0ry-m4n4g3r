@@ -214,6 +214,7 @@ public class AllFrames extends JFrame{
 								orlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, orderPanel);
 								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueOrder,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
 								orlayout.putConstraint(SpringLayout.NORTH, continueOrder, 280, SpringLayout.NORTH, orderPanel);
+								
 								orderPanel.add(welcome);
 								orderPanel.add(instText);
 								orderPanel.add(productText);
@@ -251,8 +252,29 @@ public class AllFrames extends JFrame{
 						
 						private void restock() {
 							restockPanel.removeAll();
+							restockPanel.setBackground(new Color(255,255,204));
+							
 							welcome.setFont(new Font("Arial", Font.BOLD, 48));
 							welcome.setText("Process Restock");
+							
+							SpringLayout orlayout = new SpringLayout();
+							restockPanel.setLayout(orlayout);
+							
+							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, instText,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, instText, 150, SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.WEST, productText,80,SpringLayout.WEST, restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.WEST, productID,80,SpringLayout.EAST, productText);
+							orlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,restockPanel);
+							orlayout.putConstraint(SpringLayout.WEST, quantityText,80,SpringLayout.WEST, restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, quantityText, 240,SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.WEST, quantity,80,SpringLayout.EAST, quantityText);
+							orlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRestock,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
+							
 							restockPanel.add(welcome);
 							restockPanel.add(instText);
 							productText.setText("Product ID");
