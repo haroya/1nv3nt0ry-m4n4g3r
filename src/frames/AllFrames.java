@@ -67,6 +67,8 @@ public class AllFrames extends JFrame{
 		logInPanel.add(continueLogIn);
 		repaint();
 		revalidate();
+		
+		
 	}
 	
 	
