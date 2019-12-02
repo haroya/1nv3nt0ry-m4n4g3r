@@ -672,11 +672,13 @@ public class AllFrames extends JFrame{
 					private JButton continueMA = new JButton("continue");
 					private JTextField startText = new JTextField(15);
 					private JTextField endText = new JTextField(15);
-					private JTextField startDate = new JTextField(50);
-					private JTextField endDate = new JTextField(50);
+					private JTextField startDate = new JTextField(40);
+					private JTextField endDate = new JTextField(40);
 					
 					private void marketingAnalysis() {
 						marketPanel.removeAll();
+						marketPanel.setBackground(new Color(255,255,204));
+						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Marketing Analysis");
 						productText.setText("Product ID");
@@ -685,6 +687,28 @@ public class AllFrames extends JFrame{
 						startText.setText("Start date");
 						endText.setBackground(new Color(204,255,153));
 						endText.setText("End date");
+						
+						SpringLayout marketlayout = new SpringLayout();
+						marketPanel.setLayout(marketlayout);
+						
+						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, instText,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, instText, 150, SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.WEST, productText,95,SpringLayout.WEST, marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, productText);
+						marketlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,marketPanel);
+						marketlayout.putConstraint(SpringLayout.WEST, startText,95,SpringLayout.WEST, marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, startText, 240,SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.WEST, startDate,95,SpringLayout.EAST, startText);
+						marketlayout.putConstraint(SpringLayout.NORTH,startDate,240,SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.WEST, endText,95, SpringLayout.WEST,marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, endText, 280, SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.WEST, endDate,95,SpringLayout.EAST, endText);
+						marketlayout.putConstraint(SpringLayout.NORTH,endDate,280,SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueMA,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, continueMA, 320, SpringLayout.NORTH, marketPanel);
 						
 						marketPanel.add(welcome);
 						marketPanel.add(instText);
