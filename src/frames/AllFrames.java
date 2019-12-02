@@ -373,7 +373,7 @@ public class AllFrames extends JFrame{
 					private JButton adjustButton = new JButton("Adjust Product Quantity");
 					private JButton iOButton = new JButton("Inventory Optimization");
 					private JButton updateButton = new JButton("Update Product Information");
-					private JButton continueManage = new JButton("continue");
+					private JButton backManage = new JButton("Back");
 					
 					private void manageProducts() {
 						managePanel.removeAll();
@@ -382,15 +382,31 @@ public class AllFrames extends JFrame{
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Manage Products");
 						
+						addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+						removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						adjustButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						iOButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						updateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						backManage.setAlignmentX(Component.CENTER_ALIGNMENT);
 						
+						managePanel.setLayout(new BoxLayout(managePanel, BoxLayout.Y_AXIS));
 						
+						managePanel.add(Box.createVerticalGlue());
 						managePanel.add(welcome);
+						managePanel.add(Box.createRigidArea(new Dimension(0,10)));
 						managePanel.add(addButton);
+						managePanel.add(Box.createRigidArea(new Dimension(0,10)));
 						managePanel.add(removeButton);
+						managePanel.add(Box.createRigidArea(new Dimension(0,10)));
 						managePanel.add(adjustButton);
+						managePanel.add(Box.createRigidArea(new Dimension(0,10)));
 						managePanel.add(iOButton);
+						managePanel.add(Box.createRigidArea(new Dimension(0,10)));
 						managePanel.add(updateButton);
-						managePanel.add(continueManage);
+						managePanel.add(Box.createRigidArea(new Dimension(0,10)));
+						managePanel.add(backManage);
+						managePanel.add(Box.createVerticalGlue());
 						
 						repaint();
 						revalidate();
