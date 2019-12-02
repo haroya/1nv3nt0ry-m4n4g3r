@@ -17,7 +17,7 @@ public class AllFrames extends JFrame{
 	public JLabel instText = new JLabel("Please enter the following");
 	public JTextField nameText = new JTextField(15);
 	public JTextField productName = new JTextField(40);
-	public JTextField inst = new JTextField(60);
+	public JTextField inst = new JTextField(40);
 	public JTextField productText = new JTextField(15);
 	public JTextField quantityText = new JTextField(15);
 	public JTextField productID = new JTextField(40);
@@ -74,7 +74,7 @@ public class AllFrames extends JFrame{
 	
 	
 	public AllFrames() {
-		
+		inst.setEditable(false);
 		this.setTitle("1nv3nt0ry-m4n4g3r: Log In Page");
 		this.setSize(800,800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -639,13 +639,16 @@ public class AllFrames extends JFrame{
 							private JTextField maxInventory = new JTextField(40);
 							private JTextField minPrice = new JTextField(40);
 							private JTextField maxPrice = new JTextField(40);
-							private JButton ioContinue = new JButton("continue");
+							private JButton continueIO = new JButton("continue");
 							
 							private void inventoryOptimization() {
 								ioPanel.removeAll();
+								ioPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Inventory Optimization");
 								inst.setText("Please enter the following. Leave blank for no change");
+								inst.setEditable(false);
 								inst.setBackground(new Color(102,204,102));
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
@@ -657,6 +660,37 @@ public class AllFrames extends JFrame{
 								min$Text.setBackground(new Color(204,255,153));
 								max$Text.setText("Max price");
 								max$Text.setBackground(new Color(204,255,153));
+								
+								SpringLayout iolayout = new SpringLayout();
+								ioPanel.setLayout(iolayout);
+								
+								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, inst,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, inst, 150, SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, productText,95,SpringLayout.WEST, ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, productText);
+								iolayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, minInText,95,SpringLayout.WEST, ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, minInText, 240,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, minInventory,95,SpringLayout.EAST, minInText);
+								iolayout.putConstraint(SpringLayout.NORTH,minInventory,240,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, maxInText,95,SpringLayout.WEST, ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, maxInText, 280,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, maxInventory,95,SpringLayout.EAST, maxInText);
+								iolayout.putConstraint(SpringLayout.NORTH,maxInventory,280,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, min$Text,95,SpringLayout.WEST, ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, min$Text, 320,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, minPrice,95,SpringLayout.EAST, min$Text);
+								iolayout.putConstraint(SpringLayout.NORTH,minPrice,320,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, max$Text,95,SpringLayout.WEST, ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, max$Text, 360,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.WEST, maxPrice,95,SpringLayout.EAST, max$Text);
+								iolayout.putConstraint(SpringLayout.NORTH,maxPrice,360,SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueIO,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, continueIO, 400, SpringLayout.NORTH, ioPanel);
+								
 								
 								ioPanel.add(welcome);
 								ioPanel.add(inst);
@@ -670,7 +704,7 @@ public class AllFrames extends JFrame{
 								ioPanel.add(minPrice);
 								ioPanel.add(max$Text);
 								ioPanel.add(maxPrice);
-								ioPanel.add(ioContinue);
+								ioPanel.add(continueIO);
 								
 								repaint();
 								revalidate();
