@@ -427,6 +427,8 @@ public class AllFrames extends JFrame{
 							
 							private void addProduct() {
 								addPanel.removeAll();
+								addPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Add New Product");
 								inst.setText("Please enter the following");
@@ -441,6 +443,36 @@ public class AllFrames extends JFrame{
 								descText.setBackground(new Color(204,255,153));
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
+								
+								SpringLayout addlayout = new SpringLayout();
+								addPanel.setLayout(addlayout);
+								
+								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, welcome, 95, SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, inst,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, inst, 150, SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, nameText,95,SpringLayout.WEST, addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, nameText, 200,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, productName,95,SpringLayout.EAST, nameText);
+								addlayout.putConstraint(SpringLayout.NORTH,productName,200,SpringLayout.NORTH,addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, quantityText,95,SpringLayout.WEST, addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, quantityText, 240,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, quantity,95,SpringLayout.EAST, quantityText);
+								addlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, priceText,95,SpringLayout.WEST, addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, priceText, 280,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, price,95,SpringLayout.EAST, priceText);
+								addlayout.putConstraint(SpringLayout.NORTH,price,280,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, descText,95,SpringLayout.WEST, addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, descText, 320,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, description,95,SpringLayout.EAST, descText);
+								addlayout.putConstraint(SpringLayout.NORTH, description,320,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, productText,95,SpringLayout.WEST, addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, productText, 360,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, descText);
+								addlayout.putConstraint(SpringLayout.NORTH, productID,360,SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueAdd,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, continueAdd, 400, SpringLayout.NORTH, addPanel);
 								
 								addPanel.add(welcome);
 								addPanel.add(inst);
