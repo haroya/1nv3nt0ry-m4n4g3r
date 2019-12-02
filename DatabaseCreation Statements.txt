@@ -1,0 +1,46 @@
+﻿--Inventory Manager
+
+
+CREATE TABLE WarehouseUser (
+      UserID INTEGER NOT NULL,
+      UserName VARCHAR (30),
+      phoneNumber VARCHAR (15),
+      email VARCHAR (20),
+      passWord VARCHAR (25),
+      lockStatus VARCHAR(5),
+      CONSTRAINT WarehouseUser_PK PRIMARY KEY (UserID)
+);
+
+
+CREATE TABLE Products (
+       ProductID INTEGER NOT NULL,
+       Price DOUBLE,
+       ProductName VARCHAR (50),
+       ProductDescription VARCHAR(300),
+       Quantityinstock INTEGER,
+       threshold VARCHAR (20),
+        CONSTRAINT Products_PK PRIMARY KEY (ProductID)    
+);
+
+
+CREATE TABLE productAssociations (
+        timeTransaction VARCHAR (20) NOT NULL,
+        UserID INTEGER NOT NULL,
+        ProductID INTEGER NOT NULL,
+    CONSTRAINT productAssociations_PK PRIMARY KEY (timeTransaction, UserID, ProductID), 
+    CONSTRAINT productAssociations_fk_1 FOREIGN KEY (UserID) REFERENCES WarehouseUser (UserID), 
+    CONSTRAINT productAssociations_fk_2 FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
+);
+
+
+CREATE TABLE OrderLogs (
+        orderID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+
+
+        ProductID INTEGER NOT NULL,
+        ProductAmountOrdered INTEGER NOT NULL,
+        dateOrdered DATE NOT NULL,
+        timeOrdered TIME NOT NULL,
+        CONSTRAINT OrderLogs_PK PRIMARY KEY (orderID, ProductID, ProductAmountOrdered, timeOrdered), 
+        CONSTRAINT OrderLogs_fk_1 FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
+);
