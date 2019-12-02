@@ -377,8 +377,13 @@ public class AllFrames extends JFrame{
 					
 					private void manageProducts() {
 						managePanel.removeAll();
+						managePanel.setBackground(new Color(255,255,204));
+						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
 						welcome.setText("Manage Products");
+						
+						
+						
 						managePanel.add(welcome);
 						managePanel.add(addButton);
 						managePanel.add(removeButton);
