@@ -511,20 +511,36 @@ public class AllFrames extends JFrame{
 /////////////////////////////////REMOVE PRODUCT//////////////////////////////////////////////////////////////
 						removeButton.addActionListener(new ActionListener() {
 							JPanel removePanel = new JPanel();
-							private JButton removeContinue = new JButton("continue");
+							private JButton continueRemove = new JButton("continue");
 							
 							private void removeProduct() {
 								removePanel.removeAll();
+								removePanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Remove Product");
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
 								
+								SpringLayout remlayout = new SpringLayout();
+								removePanel.setLayout(remlayout);
+								
+								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, welcome, 95, SpringLayout.NORTH, removePanel);
+								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, instText,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, instText, 150, SpringLayout.NORTH, removePanel);
+								remlayout.putConstraint(SpringLayout.WEST, productText,95,SpringLayout.WEST, removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, removePanel);
+								remlayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, productText);
+								remlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,removePanel);
+								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRemove,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, continueRemove, 280, SpringLayout.NORTH, removePanel);
+								
 								removePanel.add(welcome);
 								removePanel.add(instText);
 								removePanel.add(productText);
 								removePanel.add(productID);
-								removePanel.add(removeContinue);
+								removePanel.add(continueRemove);
 								
 								repaint();
 								revalidate();	
@@ -553,6 +569,8 @@ public class AllFrames extends JFrame{
 							
 							private void adjustProductQuantity() {
 								adjustPanel.removeAll();
+								adjustPanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Adjust Product Quantity");
 								inst.setText("Please enter the following");
@@ -561,6 +579,24 @@ public class AllFrames extends JFrame{
 								productText.setBackground(new Color(204,255,153));
 								quantityText.setText("Quantity");
 								quantityText.setBackground(new Color(204,255,153));
+								
+								SpringLayout adjlayout = new SpringLayout();
+								adjustPanel.setLayout(adjlayout);
+								
+								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, inst,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, inst, 150, SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.WEST, productText,95,SpringLayout.WEST, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, productText);
+								adjlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,adjustPanel);
+								adjlayout.putConstraint(SpringLayout.WEST, quantityText,95,SpringLayout.WEST, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, quantityText, 240,SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.WEST, quantity,95,SpringLayout.EAST, quantityText);
+								adjlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueAdjust,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, continueAdjust, 280, SpringLayout.NORTH, adjustPanel);
 								
 								adjustPanel.add(welcome);
 								adjustPanel.add(inst);
