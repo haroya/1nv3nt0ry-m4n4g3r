@@ -648,7 +648,6 @@ public class AllFrames extends JFrame{
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Inventory Optimization");
 								inst.setText("Please enter the following. Leave blank for no change");
-								inst.setEditable(false);
 								inst.setBackground(new Color(102,204,102));
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
@@ -733,6 +732,8 @@ public class AllFrames extends JFrame{
 							
 							private void updateProductInfo() {
 								updatePanel.removeAll();
+								updatePanel.setBackground(new Color(255,255,204));
+								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
 								welcome.setText("Update Product Information");
 								inst.setText("Please enter the following. Leave blank for no change");
@@ -745,6 +746,33 @@ public class AllFrames extends JFrame{
 								priceText.setBackground(new Color(204,255,153));
 								descText.setText("Description");
 								descText.setBackground(new Color(204,255,153));
+								
+								SpringLayout uplayout = new SpringLayout();
+								updatePanel.setLayout(uplayout);
+								
+								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcome,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, welcome, 80, SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, inst,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, inst, 150, SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, productText,95,SpringLayout.WEST, updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, productText, 200,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, productText);
+								uplayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, nameText,95,SpringLayout.WEST, updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, nameText, 240,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, productName,95,SpringLayout.EAST, nameText);
+								uplayout.putConstraint(SpringLayout.NORTH,productName,240,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, priceText,95,SpringLayout.WEST, updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, priceText, 280,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, price,95,SpringLayout.EAST, priceText);
+								uplayout.putConstraint(SpringLayout.NORTH,price,280,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, descText,95,SpringLayout.WEST, updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, descText, 320,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.WEST, description,95,SpringLayout.EAST, descText);
+								uplayout.putConstraint(SpringLayout.NORTH,description,320,SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueUpdate,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, continueUpdate, 360, SpringLayout.NORTH, updatePanel);
+								
 								
 								updatePanel.add(welcome);
 								updatePanel.add(inst);
