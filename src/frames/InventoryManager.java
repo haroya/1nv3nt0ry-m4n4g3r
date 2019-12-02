@@ -114,7 +114,7 @@ public class InventoryManager {
                  String password1 = in.nextLine();
                  if (getTable(ps)[0].contains(password1)){
                      numbercheck = true;
-                     System.out.println("hello");
+                    
                  }
                  else {
                      if (numbertries <= 0){
