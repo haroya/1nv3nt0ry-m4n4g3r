@@ -35,6 +35,8 @@ public class AllFrames extends JFrame{
 	static JButton continueLogIn = new JButton("continue");
 	static JButton backButton = new JButton("BACK");
 	static JButton backToManage = new JButton("Back");
+	static JButton backToORR = new JButton("Back");
+	static JButton backToMenu = new JButton("Back");
 	
 	
 	public void logIn() {
@@ -175,7 +177,7 @@ public class AllFrames extends JFrame{
 						welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 						orderButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 						restockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-						backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						backToMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
 						
 						oRRPanel.setLayout(new BoxLayout(oRRPanel,BoxLayout.Y_AXIS));
 						
@@ -186,7 +188,7 @@ public class AllFrames extends JFrame{
 						oRRPanel.add(Box.createRigidArea(new Dimension(0,10)));
 						oRRPanel.add(restockButton);
 						oRRPanel.add(Box.createRigidArea(new Dimension(0,10)));
-						oRRPanel.add(backButton);
+						oRRPanel.add(backToMenu);
 						oRRPanel.add(Box.createVerticalGlue());
 						
 						repaint();
@@ -255,6 +257,8 @@ public class AllFrames extends JFrame{
 								orlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, orderPanel);
 								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueOrder,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
 								orlayout.putConstraint(SpringLayout.NORTH, continueOrder, 280, SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToORR,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
+								orlayout.putConstraint(SpringLayout.NORTH, backToORR, 320, SpringLayout.NORTH, orderPanel);
 								
 								orderPanel.add(welcome);
 								orderPanel.add(instText);
@@ -263,6 +267,7 @@ public class AllFrames extends JFrame{
 								orderPanel.add(quantityText);
 								orderPanel.add(quantity);
 								orderPanel.add(continueOrder);
+								orderPanel.add(backToORR);
 								
 								repaint();
 								revalidate();
@@ -279,7 +284,36 @@ public class AllFrames extends JFrame{
 								
 								c.remove(oRRPanel);
 								c.add(orderPanel);
-								
+								continueOrder.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent click) {
+										//if input is invalid
+										
+										//if input is valid/////////////////////////////////////////////
+										 Object[] options1 = { "Confirm", "Cancel"};
+
+										 JPanel panel = new JPanel();
+										 panel.add(new JLabel("Do you wish to confirm process order?"));
+
+										 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Process Order",
+							             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+										 if (result == JOptionPane.YES_OPTION){
+									            JTextField confirmOrder = new JTextField(20);
+									            confirmOrder.setEditable(false);
+									            confirmOrder.setText("Order Processed");
+									            orderPanel.removeAll();
+									            order(); 
+									            quantity.setEditable(false);
+									            productID.setEditable(false);
+									            orderPanel.add(confirmOrder);
+									            orderPanel.remove(continueOrder);
+									            c.add(orderPanel);
+									            repaint();
+									            revalidate();
+									            
+									        }
+									}
+									
+								});
 								repaint();
 								revalidate();
 							}
@@ -317,6 +351,9 @@ public class AllFrames extends JFrame{
 							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
 							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRestock,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
 							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToORR,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, backToORR, 320, SpringLayout.NORTH, restockPanel);
+							
 							
 							restockPanel.add(welcome);
 							restockPanel.add(instText);
@@ -329,6 +366,8 @@ public class AllFrames extends JFrame{
 							restockPanel.add(quantityText);
 							restockPanel.add(quantity);
 							restockPanel.add(continueRestock);
+							restockPanel.add(backToORR);
+							
 							repaint();
 							revalidate();
 						}
@@ -342,6 +381,35 @@ public class AllFrames extends JFrame{
 							c.setSize(800,800);
 							c.remove(oRRPanel);
 							c.add(restockPanel);
+							continueRestock.addActionListener(new ActionListener() {
+
+								@Override
+								public void actionPerformed(ActionEvent arg0) {
+									Object[] options1 = { "Confirm", "Cancel"};
+
+									 JPanel panel = new JPanel();
+									 panel.add(new JLabel("Do you wish to confirm process restock?"));
+
+									 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Process Restock",
+						             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+									 if (result == JOptionPane.YES_OPTION){
+								            JTextField confirmRe = new JTextField(20);
+								            confirmRe.setEditable(false);
+								            confirmRe.setText("Order Restocked");
+								            restockPanel.removeAll();
+								            restock(); 
+								            quantity.setEditable(false);
+								            productID.setEditable(false);
+								            restockPanel.add(confirmRe);
+								            restockPanel.remove(continueRestock);
+								            c.add(restockPanel);
+								            repaint();
+								            revalidate();
+								            
+								        }
+								}
+								
+							});
 							repaint();
 							revalidate();
 							
@@ -1030,6 +1098,8 @@ public class AllFrames extends JFrame{
 						marketlayout.putConstraint(SpringLayout.NORTH,endDate,280,SpringLayout.NORTH, marketPanel);
 						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueMA,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
 						marketlayout.putConstraint(SpringLayout.NORTH, continueMA, 320, SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToMenu,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, backToMenu, 360, SpringLayout.NORTH, marketPanel);
 						
 						marketPanel.add(welcome);
 						marketPanel.add(instText);
@@ -1040,6 +1110,7 @@ public class AllFrames extends JFrame{
 						marketPanel.add(endText);
 						marketPanel.add(endDate);
 						marketPanel.add(continueMA);
+						marketPanel.add(backToMenu);
 						
 						repaint();
 						revalidate();
@@ -1054,7 +1125,36 @@ public class AllFrames extends JFrame{
 						c.setTitle("1nv3nt0ry-m4n4g3r: Marketing Analysis");
 						c.remove(menuPanel);
 						c.add(marketPanel);
-						///insert if statements
+						continueMA.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent arg0) {
+								Object[] options1 = { "Confirm", "Cancel"};
+
+								 JPanel panel = new JPanel();
+								 panel.add(new JLabel("Do you wish to confirm marketing analysis?"));
+
+								 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Marketing Analysis",
+					             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+								 if (result == JOptionPane.YES_OPTION){
+							            JTextField confirmOrder = new JTextField(20);
+							            confirmOrder.setEditable(false);
+							            confirmOrder.setText("MARKETING ANALYSIS");
+							            marketPanel.removeAll();
+							            marketingAnalysis(); 
+							            startDate.setEditable(false);
+							            endDate.setEditable(false);
+							            productID.setEditable(false);
+							            marketPanel.add(confirmOrder);
+							            marketPanel.remove(continueMA);
+							            c.add(marketPanel);
+							            repaint();
+							            revalidate();
+							            
+							        }
+							}
+							
+						});
 						repaint();
 						revalidate();
 					}
