@@ -43,6 +43,7 @@ public class AllFrames extends JFrame{
 	
 	public void logIn() {
 		logInPanel.removeAll();
+		clearTextFields();
 		logInPanel.setBackground(new Color(255,255,204));
 		
 		welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -96,7 +97,7 @@ public class AllFrames extends JFrame{
 			
 			public void menu() {
 				menuPanel.removeAll();
-				
+				clearTextFields();
 				menuPanel.setBackground(new Color(255,255,204));
 				
 				backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -175,6 +176,7 @@ public class AllFrames extends JFrame{
 					
 					public void oRR() {
 						oRRPanel.removeAll();
+						clearTextFields();
 						oRRPanel.setBackground(new Color(255,255,204));
 						
 						welcomeORR.setFont(new Font("Arial", Font.BOLD, 48));
@@ -244,6 +246,7 @@ public class AllFrames extends JFrame{
 							
 							public void order() {
 								orderPanel.removeAll();
+								clearTextFields();
 								orderPanel.setBackground(new Color(255,255,204));
 								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -361,6 +364,7 @@ public class AllFrames extends JFrame{
 						public JButton backRestock = new JButton("back");
 						public void restock() {
 							restockPanel.removeAll();
+							clearTextFields();
 							restockPanel.setBackground(new Color(255,255,204));
 							
 							welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -497,6 +501,7 @@ public class AllFrames extends JFrame{
 					
 					public void manageProducts() {
 						managePanel.removeAll();
+						clearTextFields();
 						managePanel.setBackground(new Color(255,255,204));
 						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -572,6 +577,7 @@ public class AllFrames extends JFrame{
 							
 							public void addProduct() {
 								addPanel.removeAll();
+								clearTextFields();
 								addPanel.setBackground(new Color(255,255,204));
 								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -723,6 +729,7 @@ public class AllFrames extends JFrame{
 							
 							public void removeProduct() {
 								removePanel.removeAll();
+								clearTextFields();
 								removePanel.setBackground(new Color(255,255,204));
 								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -828,6 +835,7 @@ public class AllFrames extends JFrame{
 							
 							public void adjustProductQuantity() {
 								adjustPanel.removeAll();
+								clearTextFields();
 								adjustPanel.setBackground(new Color(255,255,204));
 								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -954,6 +962,7 @@ public class AllFrames extends JFrame{
 							
 							public void inventoryOptimization() {
 								ioPanel.removeAll();
+								clearTextFields();
 								ioPanel.setBackground(new Color(255,255,204));
 								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -1100,6 +1109,7 @@ public class AllFrames extends JFrame{
 							
 							public void updateProductInfo() {
 								updatePanel.removeAll();
+								clearTextFields();
 								updatePanel.setBackground(new Color(255,255,204));
 								
 								welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -1253,6 +1263,7 @@ public class AllFrames extends JFrame{
 					
 					public void marketingAnalysis() {
 						marketPanel.removeAll();
+						clearTextFields();
 						marketPanel.setBackground(new Color(255,255,204));
 						
 						welcome.setFont(new Font("Arial", Font.BOLD, 48));
@@ -1375,6 +1386,22 @@ public class AllFrames extends JFrame{
 		});
 		
 		this.add(logInPanel);
+	}
+	
+	public static void clearTextFields() {
+
+		productName.setText("");
+		productName.setEditable(true);
+		inst.setText("");
+		inst.setEditable(true);
+		productID.setText("");
+		productID.setEditable(true);
+		quantity.setText("");
+		quantity.setEditable(true);
+		price.setText("");
+		price.setEditable(true);
+		description.setText("");
+		description.setEditable(true);
 	}
 	
 }
