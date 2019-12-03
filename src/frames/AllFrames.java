@@ -1049,8 +1049,8 @@ public class AllFrames extends JFrame{
 								uplayout.putConstraint(SpringLayout.NORTH,description,320,SpringLayout.NORTH, updatePanel);
 								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueUpdate,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
 								uplayout.putConstraint(SpringLayout.NORTH, continueUpdate, 360, SpringLayout.NORTH, updatePanel);
-								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
-								uplayout.putConstraint(SpringLayout.NORTH, backToManage, 400, SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backUpdate,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, backUpdate, 400, SpringLayout.NORTH, updatePanel);
 								
 								
 								updatePanel.add(welcome);
@@ -1064,7 +1064,26 @@ public class AllFrames extends JFrame{
 								updatePanel.add(descText);
 								updatePanel.add(description);
 								updatePanel.add(continueUpdate);
-								updatePanel.add(backToManage);
+								updatePanel.add(backUpdate);
+								
+								backUpdate.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(managePanel);
+										
+										repaint();
+										revalidate();		
+										
+									}
+								});
 								
 								repaint();
 								revalidate();
@@ -1137,6 +1156,7 @@ public class AllFrames extends JFrame{
 					private JTextField endText = new JTextField(15);
 					private JTextField startDate = new JTextField(40);
 					private JTextField endDate = new JTextField(40);
+					private JButton backMA = new JButton("Back");
 					
 					private void marketingAnalysis() {
 						marketPanel.removeAll();
@@ -1174,6 +1194,8 @@ public class AllFrames extends JFrame{
 						marketlayout.putConstraint(SpringLayout.NORTH, continueMA, 320, SpringLayout.NORTH, marketPanel);
 						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToMenu,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
 						marketlayout.putConstraint(SpringLayout.NORTH, backToMenu, 360, SpringLayout.NORTH, marketPanel);
+						marketlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backMA,0, SpringLayout.HORIZONTAL_CENTER,marketPanel);
+						marketlayout.putConstraint(SpringLayout.NORTH, backMA, 400, SpringLayout.NORTH, marketPanel);
 						
 						marketPanel.add(welcome);
 						marketPanel.add(instText);
@@ -1184,7 +1206,25 @@ public class AllFrames extends JFrame{
 						marketPanel.add(endText);
 						marketPanel.add(endDate);
 						marketPanel.add(continueMA);
-						marketPanel.add(backToMenu);
+						marketPanel.add(backMA);
+						
+						backMA.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								menu();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+								c.setSize(800,800);
+								c.remove(((JButton)click.getSource()).getParent());
+								c.add(menuPanel);
+								
+								repaint();
+								revalidate();		
+								
+							}
+						});
 						
 						repaint();
 						revalidate();
