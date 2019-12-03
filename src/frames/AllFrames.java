@@ -140,6 +140,7 @@ public class AllFrames extends JFrame{
 				
 				repaint();
 				revalidate();
+				
 			}
 			
 			@Override
@@ -164,6 +165,7 @@ public class AllFrames extends JFrame{
 					private JButton orderButton = new JButton("Process Order");
 					private JButton restockButton = new JButton("Process Restock");
 					private JButton continueORR = new JButton("continue");
+					private JButton backMenu = new JButton("Back");
 					
 					private void oRR() {
 						oRRPanel.removeAll();
@@ -175,7 +177,8 @@ public class AllFrames extends JFrame{
 						welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 						orderButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 						restockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-						backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						backMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
+						backMenu.setText("Back");
 						
 						oRRPanel.setLayout(new BoxLayout(oRRPanel,BoxLayout.Y_AXIS));
 						
@@ -186,13 +189,13 @@ public class AllFrames extends JFrame{
 						oRRPanel.add(Box.createRigidArea(new Dimension(0,10)));
 						oRRPanel.add(restockButton);
 						oRRPanel.add(Box.createRigidArea(new Dimension(0,10)));
-						oRRPanel.add(backButton);
+						oRRPanel.add(backMenu);
 						oRRPanel.add(Box.createVerticalGlue());
 						
 						repaint();
 						revalidate();
 						
-						backButton.addActionListener(new ActionListener() {
+						backMenu.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								
@@ -266,6 +269,24 @@ public class AllFrames extends JFrame{
 								
 								repaint();
 								revalidate();
+								
+								backButton.addActionListener(new ActionListener() {
+									@Override
+									public void actionPerformed(ActionEvent e) {
+										
+										Component b = (Component) e.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										menu();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+										c.setSize(800,800);
+										c.remove(orderPanel);
+										c.add(menuPanel);
+										
+										repaint();
+										revalidate();
+															
+									}
+								});
 								
 							}
 							@Override
@@ -405,6 +426,25 @@ public class AllFrames extends JFrame{
 						
 						repaint();
 						revalidate();
+						
+						backManage.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								
+								Component b = (Component) e.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								menu();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+								c.setSize(800,800);
+								c.remove(managePanel);
+								c.add(menuPanel);
+								
+								repaint();
+								revalidate();
+								
+							}
+						});
 					}
 					
 					@Override
@@ -490,6 +530,26 @@ public class AllFrames extends JFrame{
 								addPanel.add(backToManage);
 								repaint();
 								revalidate();
+								
+								backToManage.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent e) {
+										
+										Component b = (Component) e.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+										c.setSize(800,800);
+										c.remove(addPanel);
+										c.add(managePanel);
+										
+										repaint();
+										revalidate();
+										
+									}
+								});
+								
 							}
 							
 							@Override
@@ -583,7 +643,26 @@ public class AllFrames extends JFrame{
 								removePanel.add(backToManage);
 								
 								repaint();
-								revalidate();	
+								revalidate();
+								
+								backToManage.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent e) {
+
+										Component b = (Component) e.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+										c.setSize(800, 800);
+										c.remove(removePanel);
+										c.add(managePanel);
+
+										repaint();
+										revalidate();
+
+									}
+								});
 							}
 							
 							@Override
@@ -679,6 +758,25 @@ public class AllFrames extends JFrame{
 								
 								repaint();
 								revalidate();
+								
+								backToManage.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent e) {
+
+										Component b = (Component) e.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+										c.setSize(800, 800);
+										c.remove(adjustPanel);
+										c.add(managePanel);
+
+										repaint();
+										revalidate();
+
+									}
+								});
 							}
 							
 							@Override
@@ -809,6 +907,26 @@ public class AllFrames extends JFrame{
 								
 								repaint();
 								revalidate();
+								
+								backToManage.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent e) {
+
+										Component b = (Component) e.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+										c.setSize(800, 800);
+										c.remove(ioPanel);
+										c.add(managePanel);
+
+										repaint();
+										revalidate();
+
+									}
+								});
+								
 							}
 							
 							@Override
@@ -926,6 +1044,25 @@ public class AllFrames extends JFrame{
 								
 								repaint();
 								revalidate();
+								
+								backToManage.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent e) {
+
+										Component b = (Component) e.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Manage Products");
+										c.setSize(800, 800);
+										c.remove(updatePanel);
+										c.add(managePanel);
+
+										repaint();
+										revalidate();
+
+									}
+								});
 								
 							}
 							
