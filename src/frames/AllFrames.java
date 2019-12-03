@@ -608,8 +608,8 @@ public class AllFrames extends JFrame{
 								addlayout.putConstraint(SpringLayout.NORTH, productID,360,SpringLayout.NORTH, addPanel);
 								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueAdd,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
 								addlayout.putConstraint(SpringLayout.NORTH, continueAdd, 400, SpringLayout.NORTH, addPanel);
-								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
-								addlayout.putConstraint(SpringLayout.NORTH, backToManage, 440, SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backAdd,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, backAdd, 440, SpringLayout.NORTH, addPanel);
 								
 								
 								addPanel.add(welcome);
@@ -625,7 +625,25 @@ public class AllFrames extends JFrame{
 								addPanel.add(productText);
 								addPanel.add(productID);
 								addPanel.add(continueAdd);
-								addPanel.add(backToManage);
+								addPanel.add(backAdd);
+								
+								backAdd.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(managePanel);
+										
+										repaint();
+										revalidate();		
+										
+									}
+								});
 								repaint();
 								revalidate();
 							}
@@ -711,15 +729,33 @@ public class AllFrames extends JFrame{
 								remlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,removePanel);
 								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRemove,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
 								remlayout.putConstraint(SpringLayout.NORTH, continueRemove, 240, SpringLayout.NORTH, removePanel);
-								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
-								remlayout.putConstraint(SpringLayout.NORTH, backToManage, 280, SpringLayout.NORTH, removePanel);
+								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backRemove,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, backRemove, 280, SpringLayout.NORTH, removePanel);
 								
 								removePanel.add(welcome);
 								removePanel.add(instText);
 								removePanel.add(productText);
 								removePanel.add(productID);
 								removePanel.add(continueRemove);
-								removePanel.add(backToManage);
+								removePanel.add(backRemove);
+								
+								backRemove.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(managePanel);
+										
+										repaint();
+										revalidate();	
+										
+									}
+								});
 								
 								repaint();
 								revalidate();	
@@ -805,8 +841,8 @@ public class AllFrames extends JFrame{
 								adjlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, adjustPanel);
 								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueAdjust,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
 								adjlayout.putConstraint(SpringLayout.NORTH, continueAdjust, 280, SpringLayout.NORTH, adjustPanel);
-								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
-								adjlayout.putConstraint(SpringLayout.NORTH, backToManage, 320, SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backAdjust,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, backAdjust, 320, SpringLayout.NORTH, adjustPanel);
 								
 								adjustPanel.add(welcome);
 								adjustPanel.add(inst);
@@ -815,7 +851,25 @@ public class AllFrames extends JFrame{
 								adjustPanel.add(quantityText);
 								adjustPanel.add(quantity);
 								adjustPanel.add(continueAdjust);
-								adjustPanel.add(backToManage);
+								adjustPanel.add(backAdjust);
+								
+								backAdjust.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(managePanel);
+										
+										repaint();
+										revalidate();	
+										
+									}
+								});
 								
 								repaint();
 								revalidate();
@@ -929,8 +983,8 @@ public class AllFrames extends JFrame{
 								iolayout.putConstraint(SpringLayout.NORTH,maxPrice,360,SpringLayout.NORTH, ioPanel);
 								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueIO,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
 								iolayout.putConstraint(SpringLayout.NORTH, continueIO, 400, SpringLayout.NORTH, ioPanel);
-								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
-								iolayout.putConstraint(SpringLayout.NORTH, backToManage, 440, SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backIO,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, backIO, 440, SpringLayout.NORTH, ioPanel);
 								
 								
 								ioPanel.add(welcome);
@@ -946,7 +1000,25 @@ public class AllFrames extends JFrame{
 								ioPanel.add(max$Text);
 								ioPanel.add(maxPrice);
 								ioPanel.add(continueIO);
-								ioPanel.add(backToManage);
+								ioPanel.add(backIO);
+								
+								backIO.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										manageProducts();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(managePanel);
+										
+										repaint();
+										revalidate();	
+										
+									}
+								});
 								
 								repaint();
 								revalidate();
