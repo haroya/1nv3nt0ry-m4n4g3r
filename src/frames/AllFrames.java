@@ -39,6 +39,7 @@ public class AllFrames extends JFrame{
 	static JButton backToMenu = new JButton("Back");
 	
 	
+	
 	public void logIn() {
 		logInPanel.removeAll();
 		logInPanel.setBackground(new Color(255,255,204));
@@ -166,15 +167,16 @@ public class AllFrames extends JFrame{
 					private JButton orderButton = new JButton("Process Order");
 					private JButton restockButton = new JButton("Process Restock");
 					private JButton continueORR = new JButton("continue");
+					private JLabel welcomeORR = new JLabel();
 					
 					private void oRR() {
 						oRRPanel.removeAll();
 						oRRPanel.setBackground(new Color(255,255,204));
 						
-						welcome.setFont(new Font("Arial", Font.BOLD, 48));
-						welcome.setText("Process Order or Restock");
+						welcomeORR.setFont(new Font("Arial", Font.BOLD, 48));
+						welcomeORR.setText("Process Order or Restock");
 						
-						welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
+						welcomeORR.setAlignmentX(Component.CENTER_ALIGNMENT);
 						orderButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 						restockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 						backToMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -182,7 +184,7 @@ public class AllFrames extends JFrame{
 						oRRPanel.setLayout(new BoxLayout(oRRPanel,BoxLayout.Y_AXIS));
 						
 						oRRPanel.add(Box.createVerticalGlue());
-						oRRPanel.add(welcome);
+						oRRPanel.add(welcomeORR);
 						oRRPanel.add(Box.createRigidArea(new Dimension(0,10)));
 						oRRPanel.add(orderButton);
 						oRRPanel.add(Box.createRigidArea(new Dimension(0,10)));
@@ -191,26 +193,27 @@ public class AllFrames extends JFrame{
 						oRRPanel.add(backToMenu);
 						oRRPanel.add(Box.createVerticalGlue());
 						
-						repaint();
-						revalidate();
-						
-						backButton.addActionListener(new ActionListener() {
+						backToMenu.addActionListener(new ActionListener() {
+
 							@Override
-							public void actionPerformed(ActionEvent e) {
-								
-								Component b = (Component) e.getSource();
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								menu();
 								c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
 								c.setSize(800,800);
-								c.remove(oRRPanel);
+								c.remove(((JButton)click.getSource()).getParent());
 								c.add(menuPanel);
 								
 								repaint();
-								revalidate();
-													
+								revalidate();								
 							}
+							
 						});
+						
+						repaint();
+						revalidate();
+						
 						
 					}
 					
@@ -223,11 +226,14 @@ public class AllFrames extends JFrame{
 						
 						c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
 						c.setSize(800,800);
+						
 ////////////////////////////////PROCESS ORDER/////////////////////////////////////////////////////////
 						orderButton.addActionListener(new ActionListener() {
 							JPanel orderPanel = new JPanel();
 							
 							private JButton continueOrder = new JButton("continue");
+							private JButton backOrder = new JButton("back");
+							
 							
 							private void order() {
 								orderPanel.removeAll();
@@ -257,8 +263,8 @@ public class AllFrames extends JFrame{
 								orlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, orderPanel);
 								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueOrder,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
 								orlayout.putConstraint(SpringLayout.NORTH, continueOrder, 280, SpringLayout.NORTH, orderPanel);
-								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToORR,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
-								orlayout.putConstraint(SpringLayout.NORTH, backToORR, 320, SpringLayout.NORTH, orderPanel);
+								orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backOrder,0, SpringLayout.HORIZONTAL_CENTER,orderPanel);
+								orlayout.putConstraint(SpringLayout.NORTH, backOrder, 320, SpringLayout.NORTH, orderPanel);
 								
 								orderPanel.add(welcome);
 								orderPanel.add(instText);
@@ -267,7 +273,7 @@ public class AllFrames extends JFrame{
 								orderPanel.add(quantityText);
 								orderPanel.add(quantity);
 								orderPanel.add(continueOrder);
-								orderPanel.add(backToORR);
+								orderPanel.add(backOrder);
 								
 								repaint();
 								revalidate();
@@ -284,6 +290,24 @@ public class AllFrames extends JFrame{
 								
 								c.remove(oRRPanel);
 								c.add(orderPanel);
+								backOrder.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										menu();
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(oRRPanel);
+										repaint();
+										revalidate();								
+									}
+										
+									
+								});
+								
 								continueOrder.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent click) {
 										//if input is invalid
@@ -314,6 +338,7 @@ public class AllFrames extends JFrame{
 									}
 									
 								});
+								
 								repaint();
 								revalidate();
 							}
@@ -324,7 +349,7 @@ public class AllFrames extends JFrame{
 						JPanel restockPanel = new JPanel();
 						JLabel restockText = new JLabel("Process Restock");
 						private JButton continueRestock = new JButton("continue");
-						
+						private JButton backRestock = new JButton("back");
 						private void restock() {
 							restockPanel.removeAll();
 							restockPanel.setBackground(new Color(255,255,204));
@@ -351,8 +376,8 @@ public class AllFrames extends JFrame{
 							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
 							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRestock,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
 							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
-							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToORR,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
-							orlayout.putConstraint(SpringLayout.NORTH, backToORR, 320, SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backRestock,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, backRestock, 320, SpringLayout.NORTH, restockPanel);
 							
 							
 							restockPanel.add(welcome);
@@ -366,10 +391,29 @@ public class AllFrames extends JFrame{
 							restockPanel.add(quantityText);
 							restockPanel.add(quantity);
 							restockPanel.add(continueRestock);
-							restockPanel.add(backToORR);
+							restockPanel.add(backRestock);
+							backRestock.addActionListener(new ActionListener() {
+
+								@Override
+								public void actionPerformed(ActionEvent click) {
+									Component b = (Component) click.getSource();
+									JFrame c = (JFrame) SwingUtilities.getRoot(b);
+									menu();
+									c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+									c.setSize(800,800);
+									c.remove(((JButton)click.getSource()).getParent());
+									c.add(oRRPanel);
+									
+									repaint();
+									revalidate();		
+									
+								}
+								
+							});
 							
 							repaint();
 							revalidate();
+						
 						}
 						
 						@Override
@@ -410,6 +454,8 @@ public class AllFrames extends JFrame{
 								}
 								
 							});
+							
+						
 							repaint();
 							revalidate();
 							
@@ -471,8 +517,31 @@ public class AllFrames extends JFrame{
 						managePanel.add(backManage);
 						managePanel.add(Box.createVerticalGlue());
 						
+						backManage.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent click) {
+								Component b = (Component) click.getSource();
+								JFrame c = (JFrame) SwingUtilities.getRoot(b);
+								menu();
+								c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+								c.setSize(800,800);
+								c.remove(((JButton)click.getSource()).getParent());
+								c.add(menuPanel);
+								
+								repaint();
+								revalidate();		
+								
+							}
+							
+						});
+
+								
+					
+						
 						repaint();
 						revalidate();
+						
+						
 					}
 					
 					@Override
@@ -487,6 +556,7 @@ public class AllFrames extends JFrame{
 						addButton.addActionListener(new ActionListener() {
 							JPanel addPanel = new JPanel();
 							private JButton continueAdd = new JButton("continue");
+							private JButton backAdd = new JButton("back");
 							
 							private void addProduct() {
 								addPanel.removeAll();
@@ -617,6 +687,7 @@ public class AllFrames extends JFrame{
 						removeButton.addActionListener(new ActionListener() {
 							JPanel removePanel = new JPanel();
 							private JButton continueRemove = new JButton("continue");
+							private JButton backRemove = new JButton("back");
 							
 							private void removeProduct() {
 								removePanel.removeAll();
@@ -702,6 +773,7 @@ public class AllFrames extends JFrame{
 						adjustButton.addActionListener(new ActionListener() {
 							JPanel adjustPanel = new JPanel();
 							private JButton continueAdjust = new JButton("continue");
+							private JButton backAdjust = new JButton("back");
 							
 							private void adjustProductQuantity() {
 								adjustPanel.removeAll();
@@ -807,6 +879,7 @@ public class AllFrames extends JFrame{
 							private JTextField minPrice = new JTextField(40);
 							private JTextField maxPrice = new JTextField(40);
 							private JButton continueIO = new JButton("continue");
+							private JButton backIO = new JButton("back");
 							
 							private void inventoryOptimization() {
 								ioPanel.removeAll();
@@ -932,6 +1005,7 @@ public class AllFrames extends JFrame{
 						updateButton.addActionListener(new ActionListener() {
 							JPanel updatePanel = new JPanel();
 							private JButton continueUpdate = new JButton("continue");
+							private JButton backUpdate = new JButton("back");
 							
 							private void updateProductInfo() {
 								updatePanel.removeAll();
@@ -1170,3 +1244,7 @@ public class AllFrames extends JFrame{
 	
 	
 }
+
+
+	
+
