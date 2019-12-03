@@ -3,6 +3,7 @@ package frames;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -89,12 +90,11 @@ public class AllFrames extends JFrame{
 /////////////////////////////////////MAIN MENU///////////////////////////////////////////////////////		
 		continueLogIn.addActionListener(new ActionListener() {
 			JPanel menuPanel=new JPanel();
-			private JButton orderOrRestockButton = new JButton("Process Order or Restock");
-			private JButton manageButton = new JButton("Manage Products");
-			private JButton marketingButton = new JButton("Marketing Analysis");
-			private JButton continueMenu = new JButton("continue");
+			public JButton orderOrRestockButton = new JButton("Process Order or Restock");
+			public JButton manageButton = new JButton("Manage Products");
+			public JButton marketingButton = new JButton("Marketing Analysis");
 			
-			private void menu() {
+			public void menu() {
 				menuPanel.removeAll();
 				
 				menuPanel.setBackground(new Color(255,255,204));
@@ -117,13 +117,17 @@ public class AllFrames extends JFrame{
 						Component b = (Component) e.getSource();
 						JFrame c = (JFrame) SwingUtilities.getRoot(b);
 						logIn();
-						c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
-						c.setSize(800,800);
-						c.remove(menuPanel);
-						c.add(logInPanel);
+						if(c != null)
+						{
+							c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+							c.setSize(800,800);
+							c.remove(menuPanel);
+							c.add(logInPanel);
+							
+							repaint();
+							revalidate();
+						}
 						
-						repaint();
-						revalidate();
 						
 					}
 				});
@@ -148,7 +152,7 @@ public class AllFrames extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent click) {
 				Component b = (Component) click.getSource();
-				JFrame c = (JFrame) SwingUtilities.getRoot(b);
+				JFrame c = (JFrame) AllFrames.this;
 				menu();
 				c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
 				c.setSize(800,800);
@@ -163,13 +167,13 @@ public class AllFrames extends JFrame{
 /////////////////////////////PROCESS ORDER OR RESTOCK////////////////////////////////////////////////////
 				orderOrRestockButton.addActionListener(new ActionListener() {
 					JPanel oRRPanel = new JPanel();
-					private JLabel orderORRestock = new JLabel("Process Order or Restock");
-					private JButton orderButton = new JButton("Process Order");
-					private JButton restockButton = new JButton("Process Restock");
-					private JButton continueORR = new JButton("continue");
-					private JLabel welcomeORR = new JLabel();
+					public JLabel orderORRestock = new JLabel("Process Order or Restock");
+					public JButton orderButton = new JButton("Process Order");
+					public JButton restockButton = new JButton("Process Restock");
+					public JButton continueORR = new JButton("continue");
+					public JLabel welcomeORR = new JLabel();
 					
-					private void oRR() {
+					public void oRR() {
 						oRRPanel.removeAll();
 						oRRPanel.setBackground(new Color(255,255,204));
 						
@@ -200,13 +204,16 @@ public class AllFrames extends JFrame{
 								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								menu();
-								c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
-								c.setSize(800,800);
-								c.remove(((JButton)click.getSource()).getParent());
-								c.add(menuPanel);
-								
-								repaint();
-								revalidate();								
+								if (c != null) {
+									c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+									c.setSize(800,800);
+									c.remove(((JButton)click.getSource()).getParent());
+									c.add(menuPanel);
+									
+									repaint();
+									revalidate();	
+								}
+															
 							}
 							
 						});
@@ -231,11 +238,11 @@ public class AllFrames extends JFrame{
 						orderButton.addActionListener(new ActionListener() {
 							JPanel orderPanel = new JPanel();
 							
-							private JButton continueOrder = new JButton("continue");
-							private JButton backOrder = new JButton("back");
+							public JButton continueOrder = new JButton("continue");
+							public JButton backOrder = new JButton("back");
 							
 							
-							private void order() {
+							public void order() {
 								orderPanel.removeAll();
 								orderPanel.setBackground(new Color(255,255,204));
 								
@@ -297,12 +304,14 @@ public class AllFrames extends JFrame{
 										Component b = (Component) click.getSource();
 										JFrame c = (JFrame) SwingUtilities.getRoot(b);
 										menu();
-										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-										c.setSize(800,800);
-										c.remove(((JButton)click.getSource()).getParent());
-										c.add(oRRPanel);
-										repaint();
-										revalidate();								
+										if (c != null) {
+											c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+											c.setSize(800,800);
+											c.remove(((JButton)click.getSource()).getParent());
+											c.add(oRRPanel);
+											repaint();
+											revalidate();	
+										}
 									}
 										
 									
@@ -348,9 +357,9 @@ public class AllFrames extends JFrame{
 					restockButton.addActionListener(new ActionListener() {
 						JPanel restockPanel = new JPanel();
 						JLabel restockText = new JLabel("Process Restock");
-						private JButton continueRestock = new JButton("continue");
-						private JButton backRestock = new JButton("back");
-						private void restock() {
+						public JButton continueRestock = new JButton("continue");
+						public JButton backRestock = new JButton("back");
+						public void restock() {
 							restockPanel.removeAll();
 							restockPanel.setBackground(new Color(255,255,204));
 							
@@ -399,13 +408,15 @@ public class AllFrames extends JFrame{
 									Component b = (Component) click.getSource();
 									JFrame c = (JFrame) SwingUtilities.getRoot(b);
 									menu();
-									c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-									c.setSize(800,800);
-									c.remove(((JButton)click.getSource()).getParent());
-									c.add(oRRPanel);
+									if (c != null) {
+										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+										c.setSize(800,800);
+										c.remove(((JButton)click.getSource()).getParent());
+										c.add(oRRPanel);
 									
-									repaint();
-									revalidate();		
+										repaint();
+										revalidate();	
+									}
 									
 								}
 								
@@ -477,12 +488,12 @@ public class AllFrames extends JFrame{
 ///////////////////////////MANAGE PRODUCTS///////////////////////////////////////
 				manageButton.addActionListener(new ActionListener() {
 					JPanel managePanel = new JPanel();
-					private JButton addButton = new JButton("Add new product");
-					private JButton removeButton = new JButton("Remove product");
-					private JButton adjustButton = new JButton("Adjust Product Quantity");
-					private JButton iOButton = new JButton("Inventory Optimization");
-					private JButton updateButton = new JButton("Update Product Information");
-					private JButton backManage = new JButton("Back");
+					public JButton addButton = new JButton("Add new product");
+					public JButton removeButton = new JButton("Remove product");
+					public JButton adjustButton = new JButton("Adjust Product Quantity");
+					public JButton iOButton = new JButton("Inventory Optimization");
+					public JButton updateButton = new JButton("Update Product Information");
+					public JButton backManage = new JButton("Back");
 					
 					public void manageProducts() {
 						managePanel.removeAll();
@@ -523,14 +534,15 @@ public class AllFrames extends JFrame{
 								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								menu();
-								c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
-								c.setSize(800,800);
-								c.remove(((JButton)click.getSource()).getParent());
-								c.add(menuPanel);
-								
-								repaint();
-								revalidate();		
-								
+								if (c != null) {
+									c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+									c.setSize(800,800);
+									c.remove(((JButton)click.getSource()).getParent());
+									c.add(menuPanel);
+									
+									repaint();
+									revalidate();		
+								}
 							}
 							
 						});
@@ -555,10 +567,10 @@ public class AllFrames extends JFrame{
 /////////////////////////////////ADD NEW PRODUCT////////////////////////////////////////////////////////////
 						addButton.addActionListener(new ActionListener() {
 							JPanel addPanel = new JPanel();
-							private JButton continueAdd = new JButton("continue");
-							private JButton backAdd = new JButton("back");
+							public JButton continueAdd = new JButton("continue");
+							public JButton backAdd = new JButton("back");
 							
-							private void addProduct() {
+							public void addProduct() {
 								addPanel.removeAll();
 								addPanel.setBackground(new Color(255,255,204));
 								
@@ -634,13 +646,15 @@ public class AllFrames extends JFrame{
 										Component b = (Component) click.getSource();
 										JFrame c = (JFrame) SwingUtilities.getRoot(b);
 										manageProducts();
-										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-										c.setSize(800,800);
-										c.remove(((JButton)click.getSource()).getParent());
-										c.add(managePanel);
-										
-										repaint();
-										revalidate();		
+										if (c != null) {
+											c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+											c.setSize(800,800);
+											c.remove(((JButton)click.getSource()).getParent());
+											c.add(managePanel);
+											
+											repaint();
+											revalidate();	
+										}
 										
 									}
 								});
@@ -704,10 +718,10 @@ public class AllFrames extends JFrame{
 /////////////////////////////////REMOVE PRODUCT//////////////////////////////////////////////////////////////
 						removeButton.addActionListener(new ActionListener() {
 							JPanel removePanel = new JPanel();
-							private JButton continueRemove = new JButton("continue");
-							private JButton backRemove = new JButton("back");
+							public JButton continueRemove = new JButton("continue");
+							public JButton backRemove = new JButton("back");
 							
-							private void removeProduct() {
+							public void removeProduct() {
 								removePanel.removeAll();
 								removePanel.setBackground(new Color(255,255,204));
 								
@@ -746,14 +760,15 @@ public class AllFrames extends JFrame{
 										Component b = (Component) click.getSource();
 										JFrame c = (JFrame) SwingUtilities.getRoot(b);
 										manageProducts();
-										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-										c.setSize(800,800);
-										c.remove(((JButton)click.getSource()).getParent());
-										c.add(managePanel);
-										
-										repaint();
-										revalidate();	
-										
+										if (c != null) {
+											c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+											c.setSize(800,800);
+											c.remove(((JButton)click.getSource()).getParent());
+											c.add(managePanel);
+											
+											repaint();
+											revalidate();	
+										}
 									}
 								});
 								
@@ -808,10 +823,10 @@ public class AllFrames extends JFrame{
 //////////////////////////////////ADJUST PRODUCT QUANTITY/////////////////////////////////////////////////////
 						adjustButton.addActionListener(new ActionListener() {
 							JPanel adjustPanel = new JPanel();
-							private JButton continueAdjust = new JButton("continue");
-							private JButton backAdjust = new JButton("back");
+							public JButton continueAdjust = new JButton("continue");
+							public JButton backAdjust = new JButton("back");
 							
-							private void adjustProductQuantity() {
+							public void adjustProductQuantity() {
 								adjustPanel.removeAll();
 								adjustPanel.setBackground(new Color(255,255,204));
 								
@@ -860,14 +875,16 @@ public class AllFrames extends JFrame{
 										Component b = (Component) click.getSource();
 										JFrame c = (JFrame) SwingUtilities.getRoot(b);
 										manageProducts();
-										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-										c.setSize(800,800);
-										c.remove(((JButton)click.getSource()).getParent());
-										c.add(managePanel);
-										
-										repaint();
-										revalidate();	
-										
+										if (c != null) {
+											c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+											c.setSize(800,800);
+											c.remove(((JButton)click.getSource()).getParent());
+											c.add(managePanel);
+											
+											repaint();
+											revalidate();
+										}
+											
 									}
 								});
 								
@@ -924,18 +941,18 @@ public class AllFrames extends JFrame{
 ////////////////////////////////INVENTORY OPTIMIZATION////////////////////////////////////////////////////////
 						iOButton.addActionListener(new ActionListener () {
 							JPanel ioPanel = new JPanel();
-							private JTextField minInText = new JTextField(15);
-							private JTextField maxInText = new JTextField(15);
-							private JTextField min$Text = new JTextField(15);
-							private JTextField max$Text = new JTextField(15);
-							private JTextField minInventory = new JTextField(40);
-							private JTextField maxInventory = new JTextField(40);
-							private JTextField minPrice = new JTextField(40);
-							private JTextField maxPrice = new JTextField(40);
-							private JButton continueIO = new JButton("continue");
-							private JButton backIO = new JButton("back");
+							public JTextField minInText = new JTextField(15);
+							public JTextField maxInText = new JTextField(15);
+							public JTextField min$Text = new JTextField(15);
+							public JTextField max$Text = new JTextField(15);
+							public JTextField minInventory = new JTextField(40);
+							public JTextField maxInventory = new JTextField(40);
+							public JTextField minPrice = new JTextField(40);
+							public JTextField maxPrice = new JTextField(40);
+							public JButton continueIO = new JButton("continue");
+							public JButton backIO = new JButton("back");
 							
-							private void inventoryOptimization() {
+							public void inventoryOptimization() {
 								ioPanel.removeAll();
 								ioPanel.setBackground(new Color(255,255,204));
 								
@@ -1009,13 +1026,15 @@ public class AllFrames extends JFrame{
 										Component b = (Component) click.getSource();
 										JFrame c = (JFrame) SwingUtilities.getRoot(b);
 										manageProducts();
-										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-										c.setSize(800,800);
-										c.remove(((JButton)click.getSource()).getParent());
-										c.add(managePanel);
-										
-										repaint();
-										revalidate();	
+										if (c != null) {
+											c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+											c.setSize(800,800);
+											c.remove(((JButton)click.getSource()).getParent());
+											c.add(managePanel);
+											
+											repaint();
+											revalidate();	
+										}
 										
 									}
 								});
@@ -1076,10 +1095,10 @@ public class AllFrames extends JFrame{
 ///////////////////////////UPDATE PRODUCT INFO///////////////////////////////////////////
 						updateButton.addActionListener(new ActionListener() {
 							JPanel updatePanel = new JPanel();
-							private JButton continueUpdate = new JButton("continue");
-							private JButton backUpdate = new JButton("back");
+							public JButton continueUpdate = new JButton("continue");
+							public JButton backUpdate = new JButton("back");
 							
-							private void updateProductInfo() {
+							public void updateProductInfo() {
 								updatePanel.removeAll();
 								updatePanel.setBackground(new Color(255,255,204));
 								
@@ -1146,13 +1165,15 @@ public class AllFrames extends JFrame{
 										Component b = (Component) click.getSource();
 										JFrame c = (JFrame) SwingUtilities.getRoot(b);
 										manageProducts();
-										c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-										c.setSize(800,800);
-										c.remove(((JButton)click.getSource()).getParent());
-										c.add(managePanel);
-										
-										repaint();
-										revalidate();		
+										if (c != null) {
+											c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+											c.setSize(800,800);
+											c.remove(((JButton)click.getSource()).getParent());
+											c.add(managePanel);
+											
+											repaint();
+											revalidate();	
+										}
 										
 									}
 								});
@@ -1223,14 +1244,14 @@ public class AllFrames extends JFrame{
 				marketingButton.addActionListener(new ActionListener() {
 					JPanel marketPanel = new JPanel();
 					
-					private JButton continueMA = new JButton("continue");
-					private JTextField startText = new JTextField(15);
-					private JTextField endText = new JTextField(15);
-					private JTextField startDate = new JTextField(40);
-					private JTextField endDate = new JTextField(40);
-					private JButton backMA = new JButton("Back");
+					public JButton continueMA = new JButton("continue");
+					public JTextField startText = new JTextField(15);
+					public JTextField endText = new JTextField(15);
+					public JTextField startDate = new JTextField(40);
+					public JTextField endDate = new JTextField(40);
+					public JButton backMA = new JButton("Back");
 					
-					private void marketingAnalysis() {
+					public void marketingAnalysis() {
 						marketPanel.removeAll();
 						marketPanel.setBackground(new Color(255,255,204));
 						
@@ -1287,13 +1308,15 @@ public class AllFrames extends JFrame{
 								Component b = (Component) click.getSource();
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								menu();
+								if (c != null) {
 								c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
-								c.setSize(800,800);
-								c.remove(((JButton)click.getSource()).getParent());
-								c.add(menuPanel);
-								
-								repaint();
-								revalidate();		
+									c.setSize(800,800);
+									c.remove(((JButton)click.getSource()).getParent());
+									c.add(menuPanel);
+									
+									repaint();
+									revalidate();	
+								}
 								
 							}
 						});
@@ -1353,7 +1376,6 @@ public class AllFrames extends JFrame{
 		
 		this.add(logInPanel);
 	}
-	
 	
 }
 
