@@ -32,7 +32,8 @@ public class AllFrames extends JFrame{
 	protected JTextField username = new JTextField(60);
 	protected JTextField password = new JTextField(60);
 	protected JButton continueLogIn = new JButton("continue");
-	protected JButton backButton = new JButton("BACK");
+	protected JButton backButton = new JButton("Back");
+	protected JButton logoutButton = new JButton("Log Out");
 //	protected ActionListener continueListen = new ContinueListener();
 	
 	public void logIn() {
@@ -78,8 +79,7 @@ public class AllFrames extends JFrame{
 		this.setTitle("1nv3nt0ry-m4n4g3r: Log In Page");
 		this.setSize(800,800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+				
 		logIn();
 /////////////////////////////////////MAIN MENU///////////////////////////////////////////////////////		
 		continueLogIn.addActionListener(new ActionListener() {
@@ -94,7 +94,7 @@ public class AllFrames extends JFrame{
 				
 				menuPanel.setBackground(new Color(255,255,204));
 				
-				backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+				logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 				welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 				orderOrRestockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 				manageButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -104,15 +104,14 @@ public class AllFrames extends JFrame{
 				menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 				welcome.setFont(new Font("Arial", Font.BOLD, 48));
 				welcome.setText("Menu");
-				backButton.setText("Log Out");
-				backButton.addActionListener(new ActionListener() {
+				logoutButton.addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						Component b = (Component) e.getSource();
 						JFrame c = (JFrame) SwingUtilities.getRoot(b);
 						logIn();
-						c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+						c.setTitle("1nv3nt0ry-m4n4g3r: Log In Page");
 						c.setSize(800,800);
 						c.remove(menuPanel);
 						c.add(logInPanel);
@@ -133,7 +132,7 @@ public class AllFrames extends JFrame{
 				menuPanel.add(Box.createRigidArea(new Dimension(0,10)));
 				menuPanel.add(marketingButton);
 				menuPanel.add(Box.createRigidArea(new Dimension(0,10)));
-				menuPanel.add(backButton);
+				menuPanel.add(logoutButton);
 				menuPanel.add(Box.createVerticalGlue());
 				
 				repaint();
@@ -174,6 +173,7 @@ public class AllFrames extends JFrame{
 						orderButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 						restockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 						backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+						backButton.setText("Back");
 						
 						oRRPanel.setLayout(new BoxLayout(oRRPanel,BoxLayout.Y_AXIS));
 						
@@ -223,7 +223,7 @@ public class AllFrames extends JFrame{
 						orderButton.addActionListener(new ActionListener() {
 							JPanel orderPanel = new JPanel();
 							
-							private JButton continueOrder = new JButton("continue");
+							private JButton continueOrder = new JButton("Continue");
 							
 							private void order() {
 								orderPanel.removeAll();
@@ -265,6 +265,28 @@ public class AllFrames extends JFrame{
 								repaint();
 								revalidate();
 								
+								continueOrder.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent e) {
+
+										Component b = (Component) click.getSource();
+										JFrame c = (JFrame) SwingUtilities.getRoot(b);
+										
+										menu();
+										
+										c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
+										c.setSize(800, 800);
+										
+										c.remove(orderPanel);
+										c.add(menuPanel);
+
+										repaint();
+										revalidate();
+
+									}
+								});
+								
 							}
 							@Override
 							public void actionPerformed(ActionEvent click) {
@@ -277,11 +299,11 @@ public class AllFrames extends JFrame{
 								
 								c.remove(oRRPanel);
 								c.add(orderPanel);
-								
+
 								repaint();
 								revalidate();
 							}
-							
+
 						});
 ////////////////////////PROCESS RESTOCK///////////////////////////////////////////
 					restockButton.addActionListener(new ActionListener() {
