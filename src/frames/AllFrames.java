@@ -13,27 +13,29 @@ import javax.swing.*;
 import java.awt.Color;
 
 public class AllFrames extends JFrame{
-	public JPanel logInPanel = new JPanel();
-	public JLabel instText = new JLabel("Please enter the following");
-	public JTextField nameText = new JTextField(15);
-	public JTextField productName = new JTextField(40);
-	public JTextField inst = new JTextField(40);
-	public JTextField productText = new JTextField(15);
-	public JTextField quantityText = new JTextField(15);
-	public JTextField productID = new JTextField(40);
-	public JTextField quantity = new JTextField(40);
-	public JTextField priceText = new JTextField(15);
-	public JTextField price = new JTextField(40);
-	public JTextField descText = new JTextField(15);
-	public JTextField description = new JTextField(40);
-	protected JLabel welcome = new JLabel("WELCOME");
-	protected JLabel userText = new JLabel("username: ");
-	protected JLabel passText = new JLabel("password: ");
-	protected JTextField username = new JTextField(60);
-	protected JTextField password = new JTextField(60);
-	protected JButton continueLogIn = new JButton("continue");
-	protected JButton backButton = new JButton("BACK");
-//	protected ActionListener continueListen = new ContinueListener();
+	
+	static JPanel logInPanel = new JPanel();
+	static JLabel instText = new JLabel("Please enter the following");
+	static JTextField nameText = new JTextField(15);
+	static JTextField productName = new JTextField(40);
+	static JTextField inst = new JTextField(40);
+	static JTextField productText = new JTextField(15);
+	static JTextField quantityText = new JTextField(15);
+	static JTextField productID = new JTextField(40);
+	static JTextField quantity = new JTextField(40);
+	static JTextField priceText = new JTextField(15);
+	static JTextField price = new JTextField(40);
+	static JTextField descText = new JTextField(15);
+	static JTextField description = new JTextField(40);
+	static JLabel welcome = new JLabel("WELCOME");
+	static JLabel userText = new JLabel("username: ");
+	static JLabel passText = new JLabel("password: ");
+	static JTextField username = new JTextField(60);
+	static JTextField password = new JTextField(60);
+	static JButton continueLogIn = new JButton("continue");
+	static JButton backButton = new JButton("BACK");
+	static JButton backToManage = new JButton("Back");
+	
 	
 	public void logIn() {
 		logInPanel.removeAll();
@@ -313,6 +315,8 @@ public class AllFrames extends JFrame{
 							orlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, restockPanel);
 							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRestock,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
 							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
+							orlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRestock,0, SpringLayout.HORIZONTAL_CENTER,restockPanel);
+							orlayout.putConstraint(SpringLayout.NORTH, continueRestock, 280, SpringLayout.NORTH, restockPanel);
 							
 							restockPanel.add(welcome);
 							restockPanel.add(instText);
@@ -345,15 +349,6 @@ public class AllFrames extends JFrame{
 						
 					});
 /////////////////////////////////PROCESS CONTINUE///////////////////////////////					
-					continueORR.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent arg0) {
-							// TODO Auto-generated method stub
-							
-						}
-						
-					});
 					
 					
 					c.remove(menuPanel);
@@ -375,7 +370,7 @@ public class AllFrames extends JFrame{
 					private JButton updateButton = new JButton("Update Product Information");
 					private JButton backManage = new JButton("Back");
 					
-					private void manageProducts() {
+					public void manageProducts() {
 						managePanel.removeAll();
 						managePanel.setBackground(new Color(255,255,204));
 						
@@ -443,6 +438,8 @@ public class AllFrames extends JFrame{
 								descText.setBackground(new Color(204,255,153));
 								productText.setText("Product ID");
 								productText.setBackground(new Color(204,255,153));
+								productID.setBackground(new Color(0,0,0));
+								productID.setEditable(false);
 								
 								SpringLayout addlayout = new SpringLayout();
 								addPanel.setLayout(addlayout);
@@ -473,6 +470,9 @@ public class AllFrames extends JFrame{
 								addlayout.putConstraint(SpringLayout.NORTH, productID,360,SpringLayout.NORTH, addPanel);
 								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueAdd,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
 								addlayout.putConstraint(SpringLayout.NORTH, continueAdd, 400, SpringLayout.NORTH, addPanel);
+								addlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,addPanel);
+								addlayout.putConstraint(SpringLayout.NORTH, backToManage, 440, SpringLayout.NORTH, addPanel);
+								
 								
 								addPanel.add(welcome);
 								addPanel.add(inst);
@@ -487,7 +487,7 @@ public class AllFrames extends JFrame{
 								addPanel.add(productText);
 								addPanel.add(productID);
 								addPanel.add(continueAdd);
-								
+								addPanel.add(backToManage);
 								repaint();
 								revalidate();
 							}
@@ -501,6 +501,43 @@ public class AllFrames extends JFrame{
 								c.setSize(800,800);		
 								c.remove(managePanel);
 								c.add(addPanel);
+								continueAdd.addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										//if input is invalid
+										
+										//if input is valid/////////////////////////////////////////////
+										 Object[] options1 = { "Confirm", "Cancel"};
+
+										 JPanel panel = new JPanel();
+										 panel.add(new JLabel("Do you wish to confirm adding a product?"));
+
+										 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Add New Product",
+							             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+										 if (result == JOptionPane.YES_OPTION){
+									            JTextField confirmAdd = new JTextField(20);
+									            confirmAdd.setEditable(false);
+									            confirmAdd.setText("Product ID GENERATED");
+									            addPanel.removeAll();
+									            addProduct();
+									            productName.setEditable(false);
+									            quantity.setEditable(false);
+									            price.setEditable(false);
+									            description.setEditable(false);
+									            productID.setBackground(new Color(240,240,240));
+									            productID.setText("Insert User Input HERE");
+									            productID.setEditable(false);
+									            addPanel.add(confirmAdd);
+									            addPanel.remove(continueAdd);
+									            c.add(addPanel);
+									            repaint();
+									            revalidate();
+									            
+									        }
+									}
+									
+								});
 								////insert if statements to validate input
 								repaint();
 								revalidate();								
@@ -534,13 +571,16 @@ public class AllFrames extends JFrame{
 								remlayout.putConstraint(SpringLayout.WEST, productID,95,SpringLayout.EAST, productText);
 								remlayout.putConstraint(SpringLayout.NORTH,productID,200,SpringLayout.NORTH,removePanel);
 								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueRemove,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
-								remlayout.putConstraint(SpringLayout.NORTH, continueRemove, 280, SpringLayout.NORTH, removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, continueRemove, 240, SpringLayout.NORTH, removePanel);
+								remlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,removePanel);
+								remlayout.putConstraint(SpringLayout.NORTH, backToManage, 280, SpringLayout.NORTH, removePanel);
 								
 								removePanel.add(welcome);
 								removePanel.add(instText);
 								removePanel.add(productText);
 								removePanel.add(productID);
 								removePanel.add(continueRemove);
+								removePanel.add(backToManage);
 								
 								repaint();
 								revalidate();	
@@ -555,6 +595,34 @@ public class AllFrames extends JFrame{
 								c.setSize(800,800);		
 								c.remove(managePanel);
 								c.add(removePanel);
+								continueRemove.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent arg0) {
+										Object[] options1 = { "Confirm", "Cancel"};
+
+										 JPanel panel = new JPanel();
+										 panel.add(new JLabel("Do you wish to confirm removing a product?"));
+
+										 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Remove Product",
+							             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+										 if (result == JOptionPane.YES_OPTION){
+									            JTextField confirmRem = new JTextField(20);
+									            confirmRem.setEditable(false);
+									            confirmRem.setText("Product Removed");
+									            removePanel.removeAll();
+									            removeProduct();
+									            removePanel.add(confirmRem);
+									            c.add(removePanel);
+									            productID.setText("ID Destroyed");
+									            productID.setEditable(false);
+									            removePanel.remove(continueRemove);
+									            repaint();
+									            revalidate();
+										 }
+									}
+									
+								});
 								////insert if statements to validate input
 								repaint();
 								revalidate();
@@ -597,6 +665,8 @@ public class AllFrames extends JFrame{
 								adjlayout.putConstraint(SpringLayout.NORTH,quantity,240,SpringLayout.NORTH, adjustPanel);
 								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueAdjust,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
 								adjlayout.putConstraint(SpringLayout.NORTH, continueAdjust, 280, SpringLayout.NORTH, adjustPanel);
+								adjlayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,adjustPanel);
+								adjlayout.putConstraint(SpringLayout.NORTH, backToManage, 320, SpringLayout.NORTH, adjustPanel);
 								
 								adjustPanel.add(welcome);
 								adjustPanel.add(inst);
@@ -605,6 +675,7 @@ public class AllFrames extends JFrame{
 								adjustPanel.add(quantityText);
 								adjustPanel.add(quantity);
 								adjustPanel.add(continueAdjust);
+								adjustPanel.add(backToManage);
 								
 								repaint();
 								revalidate();
@@ -620,6 +691,34 @@ public class AllFrames extends JFrame{
 								c.remove(managePanel);
 								c.add(adjustPanel);		
 								///if statements to validate input
+								continueAdjust.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent arg0) {
+										Object[] options1 = { "Confirm", "Cancel"};
+
+										 JPanel panel = new JPanel();
+										 panel.add(new JLabel("Do you wish to confirm adjusting product quantity?"));
+
+										 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Adjust Product Quantity",
+							             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+										 if (result == JOptionPane.YES_OPTION){
+									            JTextField confirmAdjust = new JTextField(20);
+									            confirmAdjust.setEditable(false);
+									            confirmAdjust.setText("Product Quantity Adjusted");
+									            adjustPanel.removeAll();
+									            adjustProductQuantity();
+									            adjustPanel.add(confirmAdjust);
+									            c.add(adjustPanel);
+									            quantity.setEditable(false);
+									            productID.setEditable(false);
+									            adjustPanel.remove(continueAdjust);
+									            repaint();
+									            revalidate();
+										 }
+									}
+									
+								});
 								repaint();
 								revalidate();
 							}
@@ -689,6 +788,8 @@ public class AllFrames extends JFrame{
 								iolayout.putConstraint(SpringLayout.NORTH,maxPrice,360,SpringLayout.NORTH, ioPanel);
 								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueIO,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
 								iolayout.putConstraint(SpringLayout.NORTH, continueIO, 400, SpringLayout.NORTH, ioPanel);
+								iolayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,ioPanel);
+								iolayout.putConstraint(SpringLayout.NORTH, backToManage, 440, SpringLayout.NORTH, ioPanel);
 								
 								
 								ioPanel.add(welcome);
@@ -704,6 +805,7 @@ public class AllFrames extends JFrame{
 								ioPanel.add(max$Text);
 								ioPanel.add(maxPrice);
 								ioPanel.add(continueIO);
+								ioPanel.add(backToManage);
 								
 								repaint();
 								revalidate();
@@ -718,7 +820,40 @@ public class AllFrames extends JFrame{
 								c.setSize(800,800);
 								c.remove(managePanel);
 								c.add(ioPanel);
-								////if statements to validate input
+								
+								continueIO.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent click) {
+										Object[] options1 = { "Confirm", "Cancel"};
+
+										 JPanel panel = new JPanel();
+										 panel.add(new JLabel("Do you wish to confirm inventory optimization?"));
+
+										 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Inventory Optimization",
+							             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+										 if (result == JOptionPane.YES_OPTION){
+									            JTextField confirmOp = new JTextField(20);
+									            confirmOp.setEditable(false);
+									            confirmOp.setText("Inventory Optimized");
+									            ioPanel.removeAll();
+									            inventoryOptimization();
+									            ioPanel.add(confirmOp);
+									            c.add(ioPanel);
+									            minInventory.setEditable(false);
+									            maxInventory.setEditable(false);
+									            minPrice.setEditable(false);
+									            maxPrice.setEditable(false);
+									            productID.setEditable(false);
+									            ioPanel.remove(continueIO);
+									            repaint();
+									            revalidate();
+										 }
+										
+									}
+									
+								});
+								
 								repaint();
 								revalidate();
 							}
@@ -772,6 +907,8 @@ public class AllFrames extends JFrame{
 								uplayout.putConstraint(SpringLayout.NORTH,description,320,SpringLayout.NORTH, updatePanel);
 								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, continueUpdate,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
 								uplayout.putConstraint(SpringLayout.NORTH, continueUpdate, 360, SpringLayout.NORTH, updatePanel);
+								uplayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, backToManage,0, SpringLayout.HORIZONTAL_CENTER,updatePanel);
+								uplayout.putConstraint(SpringLayout.NORTH, backToManage, 400, SpringLayout.NORTH, updatePanel);
 								
 								
 								updatePanel.add(welcome);
@@ -785,6 +922,7 @@ public class AllFrames extends JFrame{
 								updatePanel.add(descText);
 								updatePanel.add(description);
 								updatePanel.add(continueUpdate);
+								updatePanel.add(backToManage);
 								
 								repaint();
 								revalidate();
@@ -801,6 +939,38 @@ public class AllFrames extends JFrame{
 								c.remove(managePanel);
 								c.add(updatePanel);		
 								///if statements to validate input
+								continueUpdate.addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent arg0) {
+																				
+										Object[] options1 = { "Confirm", "Cancel"};
+
+										 JPanel panel = new JPanel();
+										 panel.add(new JLabel("Do you wish to confirm updating product information ?"));
+
+										 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Update Product Information",
+							             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
+										 if (result == JOptionPane.YES_OPTION){
+									            JTextField confirmOp = new JTextField(20);
+									            confirmOp.setEditable(false);
+									            confirmOp.setText("Information Updated");
+									            updatePanel.removeAll();
+									            updateProductInfo();
+									            updatePanel.add(confirmOp);
+									            c.add(updatePanel);
+									            productID.setEditable(false);
+									            productName.setEditable(false);
+									            price.setEditable(false);
+									            description.setEditable(false);
+									            updatePanel.remove(continueUpdate);
+									            repaint();
+									            revalidate();
+										 }
+										
+									}
+									
+								});
 								repaint();
 								revalidate();
 							}
@@ -898,8 +1068,5 @@ public class AllFrames extends JFrame{
 		this.add(logInPanel);
 	}
 	
-//	class ContinueListener implements ActionListener{
-//		
-//	}
 	
 }

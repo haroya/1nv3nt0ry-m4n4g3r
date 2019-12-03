@@ -11,6 +11,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 
 ////DONT TOUCH THIS!!!!!!!///////////////////////////////////////////
@@ -54,7 +56,7 @@ public class testWB extends JFrame {
 		
 		txtProductId = new JTextField();
 		txtProductId.setFont(new Font("Arial", Font.BOLD, 48));
-		txtProductId.setBackground(new Color(255, 255, 204));
+		txtProductId.setBackground(UIManager.getColor("TextField.disabledBackground"));
 		txtProductId.setText("Product ID");
 		GridBagConstraints gbc_txtProductId = new GridBagConstraints();
 		gbc_txtProductId.fill = GridBagConstraints.HORIZONTAL;
