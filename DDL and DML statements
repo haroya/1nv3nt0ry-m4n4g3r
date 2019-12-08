@@ -1,6 +1,5 @@
-﻿--Inventory Manager
-
-
+--Inventory Manager
+--DDL statements
 CREATE TABLE WarehouseUser (
       UserID INTEGER NOT NULL,
       UserName VARCHAR (30),
@@ -8,9 +7,9 @@ CREATE TABLE WarehouseUser (
       email VARCHAR (20),
       passWord VARCHAR (25),
       lockStatus VARCHAR(5),
+      Numbertries INTEGER,
       CONSTRAINT WarehouseUser_PK PRIMARY KEY (UserID)
 );
-
 
 CREATE TABLE Products (
        ProductID INTEGER NOT NULL,
@@ -19,9 +18,12 @@ CREATE TABLE Products (
        ProductDescription VARCHAR(300),
        Quantityinstock INTEGER,
        threshold VARCHAR (20),
+       MinPrice DOUBLE, 
+       MaxPrice DOUBLE,
+       MinInventory INTEGER,
+       MaxInventory INTEGER,
         CONSTRAINT Products_PK PRIMARY KEY (ProductID)    
 );
-
 
 CREATE TABLE productAssociations (
         timeTransaction VARCHAR (20) NOT NULL,
@@ -32,10 +34,8 @@ CREATE TABLE productAssociations (
     CONSTRAINT productAssociations_fk_2 FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
 );
 
-
 CREATE TABLE OrderLogs (
         orderID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-
 
         ProductID INTEGER NOT NULL,
         ProductAmountOrdered INTEGER NOT NULL,
@@ -44,3 +44,26 @@ CREATE TABLE OrderLogs (
         CONSTRAINT OrderLogs_PK PRIMARY KEY (orderID, ProductID, ProductAmountOrdered, timeOrdered), 
         CONSTRAINT OrderLogs_fk_1 FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
 );
+
+
+--DML statements 
+--UserLogIn info
+
+INSERT INTO warehouseuser (userid, username, phonenumber, email, password, lockstatus, numbertries) VALUES
+(343, 'CECS', '777-111-1234', 'Cecs@csulb.edu', 'cecs343', FALSE, 3),
+(323, 'ARTS', '714-111-1234', 'artss@csulb.edu', 'arts100', FALSE, 3),
+(378, 'CE', '562-985-1111', 'Ce@csulb.edu', 'ce@1949!', FALSE, 3),
+(424, 'MAE', '310-111-1234', 'mae@csulb.edu', 'mae@100', FALSE, 3),
+(491, 'AGILE', '510-110-1274', 'agile@software.com', 'agiledev@12', FALSE, 3);
+
+INSERT INTO products (productID, price, productname, productdescription, quantityinstock, threshold, minprice, maxprice, mininventory, maxinventory) VALUES
+(1, 3.99, 'toothpaste', 'oral hygiene', 20, '', 0.99, 4.99, 5, 40),
+(2, 1.99, 'toothbrush', 'oral cleaning', 10, '', 0.05, 2.99, 2, 20),
+(3, 7.99, 'lightbulb', 'christmas decoration', 10, '', 5.99, 10.99, 1, 20),
+(4, 10.99, 'Stool', 'Very comfortable', 8, '', 8.99, 15.99, 1, 10),
+(5, 79.99, 'Dining Chair', 'Furniture', 10, '', 75.99, 99.99, 1, 15);
+
+
+
+
+
