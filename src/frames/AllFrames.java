@@ -8,9 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 import java.awt.Color;
 
 public class AllFrames extends JFrame{
@@ -38,7 +45,7 @@ public class AllFrames extends JFrame{
 	static JButton backToManage = new JButton("Back");
 	static JButton backToORR = new JButton("Back");
 	static JButton backToMenu = new JButton("Back");
-	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 	
 	
 	public void logIn() {
@@ -1275,6 +1282,10 @@ public class AllFrames extends JFrame{
 						endText.setBackground(new Color(204,255,153));
 						endText.setText("End date");
 						
+						productText.setEditable(false);
+						startText.setEditable(false);
+						endText.setEditable(false);
+						
 						SpringLayout marketlayout = new SpringLayout();
 						marketPanel.setLayout(marketlayout);
 						
@@ -1312,6 +1323,11 @@ public class AllFrames extends JFrame{
 						marketPanel.add(continueMA);
 						marketPanel.add(backMA);
 						
+						startDate.setText("");
+						endDate.setText("");
+						startDate.setEditable(true);
+						endDate.setEditable(true);
+						
 						backMA.addActionListener(new ActionListener() {
 							
 							@Override
@@ -1320,7 +1336,7 @@ public class AllFrames extends JFrame{
 								JFrame c = (JFrame) SwingUtilities.getRoot(b);
 								menu();
 								if (c != null) {
-								c.setTitle("1nv3nt0ry-m4n4g3r: Process Order or Restock");
+									c.setTitle("1nv3nt0ry-m4n4g3r: Menu");
 									c.setSize(800,800);
 									c.remove(((JButton)click.getSource()).getParent());
 									c.add(menuPanel);
@@ -1357,9 +1373,70 @@ public class AllFrames extends JFrame{
 								 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Marketing Analysis",
 					             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,null, options1, null);
 								 if (result == JOptionPane.YES_OPTION){
+									 
+									 	//TODO: Delete sample code for testing
+									 	productID.setText("236");;
+									 	startDate.setText("01-01-2019");
+									 	endDate.setText("12-31-2019");
+									 
 							            JTextField confirmOrder = new JTextField(20);
 							            confirmOrder.setEditable(false);
 							            confirmOrder.setText("MARKETING ANALYSIS");
+							            
+							            int prodID;
+							            try {
+											prodID = Integer.parseInt(productID.getText());
+										} catch (NumberFormatException ne) {
+											 JOptionPane.showMessageDialog(null, "Invalid Product ID", "Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										} catch(Exception e) {
+											JOptionPane.showMessageDialog(null, "Something went terribly wrong...", "Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            
+							            String startString = startDate.getText();
+							            String endString = endDate.getText();
+							            
+							            if (!isValidDate(startString)) {
+							            	JOptionPane.showMessageDialog(
+							            			null, 
+							            			"Invalid Start Date",
+							            			"Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            if (!isValidDate(endString)) {
+							            	JOptionPane.showMessageDialog(
+							            			null, 
+							            			"Invalid End Date",
+							            			"Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            
+							            Calendar end = Calendar.getInstance();
+							            Calendar start = Calendar.getInstance();
+							            try {
+											end.setTime(dateFormat.parse(endString));
+								            start.setTime(dateFormat.parse(startString));
+										} catch (java.text.ParseException e) {
+											// should never get here tbh
+											e.printStackTrace();
+											return;
+										}
+							            
+							            if (end.compareTo(Calendar.getInstance()) > 0 ) {
+							            	end = Calendar.getInstance();
+										}
+							            
+							            if (end.compareTo(start) < 0) {
+							            	JOptionPane.showMessageDialog(
+							            			null, 
+							            			"End Date before Start Date",
+							            			"Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            
+							            
+							            
 							            marketPanel.removeAll();
 							            marketingAnalysis(); 
 							            startDate.setEditable(false);
@@ -1370,6 +1447,8 @@ public class AllFrames extends JFrame{
 							            c.add(marketPanel);
 							            repaint();
 							            revalidate();
+							            
+							            new JChart(prodID,start,end).setVisible(true);
 							            
 							        }
 							}
@@ -1403,6 +1482,19 @@ public class AllFrames extends JFrame{
 		description.setText("");
 		description.setEditable(true);
 	}
+	
+	public static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        } catch(Exception e) {
+        	return false;
+        }
+        return true;
+    }
 	
 }
 
