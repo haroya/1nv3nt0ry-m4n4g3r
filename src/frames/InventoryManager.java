@@ -16,14 +16,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Color;
 import static java.lang.System.in;
+import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
@@ -63,7 +69,7 @@ public class InventoryManager extends JFrame {
     static JButton backToManage = new JButton("Back");
     static JButton backToORR = new JButton("Back");
     static JButton backToMenu = new JButton("Back");
-
+SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
     public void logIn() {
         logInPanel.removeAll();
         clearTextFields();
@@ -1630,36 +1636,96 @@ public class InventoryManager extends JFrame {
                                 int result = JOptionPane.showOptionDialog(null, panel, "Confirm: Marketing Analysis",
                                         JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
                                 if (result == JOptionPane.YES_OPTION) {
+                                    int prodID;
                                     JTextField confirmOrder = new JTextField(20);
                                     confirmOrder.setEditable(false);
                                     confirmOrder.setText("MARKETING ANALYSIS");
-                                    marketPanel.removeAll();
-                                    marketingAnalysis();
-                                    startDate.setEditable(false);
-                                    endDate.setEditable(false);
-                                    productID.setEditable(false);
-                                    marketPanel.add(confirmOrder);
-                                    marketPanel.remove(continueMA);
-                                    c.add(marketPanel);
-                                    repaint();
-                                    revalidate();
+                                    try {
+											prodID = Integer.parseInt(productID.getText());
+										} catch (NumberFormatException ne) {
+											 JOptionPane.showMessageDialog(null, "Invalid Product ID", "Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										} catch(Exception e) {
+											JOptionPane.showMessageDialog(null, "Something went terribly wrong...", "Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            
+							            String startString = startDate.getText();
+							            String endString = endDate.getText();
+							            
+							            if (!isValidDate(startString)) {
+							            	JOptionPane.showMessageDialog(
+							            			null, 
+							            			"Invalid Start Date",
+							            			"Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            if (!isValidDate(endString)) {
+							            	JOptionPane.showMessageDialog(
+							            			null, 
+							            			"Invalid End Date",
+							            			"Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            
+							            Calendar end = Calendar.getInstance();
+							            Calendar start = Calendar.getInstance();
+							            try {
+											end.setTime(dateFormat.parse(endString));
+								            start.setTime(dateFormat.parse(startString));
+										} catch (java.text.ParseException e) {
+											// should never get here tbh
+											e.printStackTrace();
+											return;
+										}
+							            
+							            if (end.compareTo(Calendar.getInstance()) > 0 ) {
+							            	end = Calendar.getInstance();
+										}
+							            
+							            if (end.compareTo(start) < 0) {
+							            	JOptionPane.showMessageDialog(
+							            			null, 
+							            			"End Date before Start Date",
+							            			"Error!", JOptionPane.INFORMATION_MESSAGE);
+											 return;
+										}
+							            
+							            
+							            
+							            marketPanel.removeAll();
+							            marketingAnalysis(); 
+							            startDate.setEditable(false);
+							            endDate.setEditable(false);
+							            productID.setEditable(false);
+							            marketPanel.add(confirmOrder);
+							            marketPanel.remove(continueMA);
+							            c.add(marketPanel);
+							            repaint();
+							            revalidate();
+							            
+							           JChart n =  new JChart(prodID,start,end);
+                                                                   n.setVisible(true);
+							            
+							        }
+							}
+							
+						});
+						repaint();
+						revalidate();
+					}
+					
+				});
+				
+			}
+			
+		});
+		
+		this.add(logInPanel);
+	}
+                                   
 
-                                }
-                            }
-
-                        });
-                        repaint();
-                        revalidate();
-                    }
-
-                });
-
-            }
-
-        });
-
-        this.add(logInPanel);
-    }
+       
 
     public static void clearTextFields() {
 
@@ -2207,4 +2273,18 @@ public class InventoryManager extends JFrame {
         java.util.Date today = new java.util.Date();
         return new java.sql.Date(today.getTime());
     }
+    public static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        } catch(Exception e) {
+        	return false;
+        }
+        return true;
+    }
+	
+
 }
